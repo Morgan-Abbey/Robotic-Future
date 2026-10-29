@@ -1,0 +1,6721 @@
+{
+ "config": {
+  "dt": 0.25,
+  "q_limit": 1.0,
+  "tol": 0.06,
+  "dwell": 2,
+  "step": 0.05,
+  "max_dq": 0.1,
+  "t_max": 90.0,
+  "delay": 2,
+  "anticipate": true,
+  "switch_refractory": 2,
+  "jaw_hit": 0.9,
+  "jaw_false_per_min": 0.3,
+  "rho": 0.85,
+  "temperature": 1.0
+ },
+ "budgets": [
+  0.05,
+  0.25,
+  1.0
+ ],
+ "accuracies": [
+  0.45,
+  0.55,
+  0.65,
+  0.75,
+  0.85
+ ],
+ "by_accuracy": {
+  "0.45": {
+   "direct": {
+    "all": {
+     "n": 300,
+     "success": 0.8633333333333333,
+     "time_all": 47.47833333333333,
+     "time_all_se": 1.511477767245353,
+     "time_ok": 38.25,
+     "wrong_frac": 0.3445133886332918,
+     "switches": 3.01,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {},
+     "time": 47.47833333333333,
+     "idle": 5.633125000000012
+    }
+   },
+   "evidence": {
+    "0.05": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.028333333333333332,
+     "switches": 0.47,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.8,
+      "theta": 0.7,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 90.0,
+     "idle": 0.0031250000000000015
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.028333333333333332,
+     "switches": 0.47,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.8,
+      "theta": 0.7,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 90.0,
+     "idle": 0.0031250000000000015
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.028333333333333332,
+     "switches": 0.47,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.8,
+      "theta": 0.7,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 90.0,
+     "idle": 0.0031250000000000015
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.04833333333333333,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 90.0,
+      "idle": 0.008749999999999999
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03333333333333333,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 90.0,
+      "idle": 0.0024999999999999996
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.008333333333333333,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 1
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.11652777777777777,
+      "switches": 0.5166666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 2
+      },
+      "time": 90.0,
+      "idle": 0.02
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.1111111111111111,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 2,
+       "refractory": 3
+      },
+      "time": 90.0,
+      "idle": 0.0125
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0861111111111111,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 3,
+       "refractory": 3
+      },
+      "time": 90.0,
+      "idle": 0.008750000000000003
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 1
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.016666666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 2
+      },
+      "time": 90.0,
+      "idle": 0.0024999999999999996
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.008333333333333333,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 2
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.008333333333333333,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 3
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.27228648503458264,
+      "switches": 1.575,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 90.0,
+      "idle": 0.33750000000000013
+     },
+     {
+      "n": 120,
+      "success": 0.3,
+      "time_all": 78.55208333333333,
+      "time_all_se": 1.8055530585614425,
+      "time_ok": 52.75,
+      "wrong_frac": 0.35509728706515725,
+      "switches": 4.1,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.4,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 78.55208333333333,
+      "idle": 1.6662499999999985
+     },
+     {
+      "n": 120,
+      "success": 0.8333333333333334,
+      "time_all": 52.7375,
+      "time_all_se": 2.4057366262718776,
+      "time_ok": 42.375,
+      "wrong_frac": 0.32585480000534506,
+      "switches": 2.9583333333333335,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.4,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 52.7375,
+      "idle": 3.9299999999999917
+     }
+    ]
+   },
+   "proportional": {
+    "0.05": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.006666666666666667,
+     "switches": 0.46,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 1
+     },
+     "time": 90.0,
+     "idle": 0.00026698765587425193
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.006666666666666667,
+     "switches": 0.46,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 1
+     },
+     "time": 90.0,
+     "idle": 0.00026698765587425193
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.15666666666666668,
+     "time_all": 86.54,
+     "time_all_se": 0.5657287306258348,
+     "time_ok": 68.75,
+     "wrong_frac": 0.3315777941011651,
+     "switches": 1.9933333333333334,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.7,
+      "theta": 0.4,
+      "gamma": 1.0,
+      "vmax": 0.4,
+      "hold": 2
+     },
+     "time": 86.54,
+     "idle": 0.7474331511306309
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.11451465201465202,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.01612370151710161
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.09791666666666667,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 1.0,
+       "vmax": 0.2,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.005578180759489362
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.016666666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.0005576866101664093
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.008333333333333333,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.016666666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.0001401327769608704
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.025,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.001048100375286902
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.1658361889190155,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.4,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.026569967015130792
+     },
+     {
+      "n": 120,
+      "success": 0.175,
+      "time_all": 85.8875,
+      "time_all_se": 1.0778553457484652,
+      "time_ok": 73.0,
+      "wrong_frac": 0.33142130122169544,
+      "switches": 1.975,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 85.8875,
+      "idle": 0.8450602934406758
+     },
+     {
+      "n": 120,
+      "success": 0.6,
+      "time_all": 64.36041666666667,
+      "time_all_se": 2.4433404241965695,
+      "time_ok": 45.0,
+      "wrong_frac": 0.33035594952623387,
+      "switches": 2.558333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 64.36041666666667,
+      "idle": 2.2357458809634423
+     }
+    ]
+   },
+   "shared": {
+    "0.05": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.006666666666666667,
+     "switches": 0.46,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 1,
+      "kappa": 0.15,
+      "tau": 0.8
+     },
+     "time": 90.0,
+     "idle": 0.00026698765587425193
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.006666666666666667,
+     "switches": 0.46,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 1,
+      "kappa": 0.15,
+      "tau": 0.8
+     },
+     "time": 90.0,
+     "idle": 0.00026698765587425193
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.7133333333333334,
+     "time_all": 55.41166666666667,
+     "time_all_se": 1.695207386827717,
+     "time_ok": 35.875,
+     "wrong_frac": 0.27793753925788633,
+     "switches": 0.83,
+     "wrong_commits": 0.20333333333333334,
+     "auto_commits": 0.9233333333333333,
+     "params": {
+      "alpha": 0.7,
+      "theta": 0.4,
+      "gamma": 1.0,
+      "vmax": 0.4,
+      "hold": 2,
+      "kappa": 0.3,
+      "tau": 0.8
+     },
+     "time": 55.41166666666667,
+     "idle": 1.0463939750355586
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.15,
+       "tau": 0.8
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.15,
+       "tau": 0.9
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.15,
+       "tau": 0.97
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.9
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.97
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.15,
+       "tau": 0.8
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.15,
+       "tau": 0.9
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.15,
+       "tau": 0.97
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.9
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.97
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.03166666666666666,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 90.0,
+      "idle": 0.001216806939635394
+     },
+     {
+      "n": 120,
+      "success": 0.75,
+      "time_all": 54.05,
+      "time_all_se": 2.526994663787861,
+      "time_ok": 41.75,
+      "wrong_frac": 0.2770889552985064,
+      "switches": 0.9166666666666666,
+      "wrong_commits": 0.175,
+      "auto_commits": 0.9416666666666667,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 54.05,
+      "idle": 1.0227699060953443
+     },
+     {
+      "n": 120,
+      "success": 0.7583333333333333,
+      "time_all": 54.75416666666667,
+      "time_all_se": 2.511925309731827,
+      "time_ok": 44.5,
+      "wrong_frac": 0.2773147788881618,
+      "switches": 0.9416666666666667,
+      "wrong_commits": 0.16666666666666666,
+      "auto_commits": 0.9416666666666667,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 54.75416666666667,
+      "idle": 1.0233986069741108
+     },
+     {
+      "n": 120,
+      "success": 0.7666666666666667,
+      "time_all": 50.94375,
+      "time_all_se": 2.6772305788452218,
+      "time_ok": 37.0,
+      "wrong_frac": 0.26320880055604556,
+      "switches": 0.8083333333333333,
+      "wrong_commits": 0.3,
+      "auto_commits": 1.0666666666666667,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 50.94375,
+      "idle": 1.3204330519717058
+     },
+     {
+      "n": 120,
+      "success": 0.7583333333333333,
+      "time_all": 51.53958333333333,
+      "time_all_se": 2.5829464490161347,
+      "time_ok": 37.5,
+      "wrong_frac": 0.270802244580551,
+      "switches": 0.875,
+      "wrong_commits": 0.21666666666666667,
+      "auto_commits": 0.9833333333333333,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 51.53958333333333,
+      "idle": 1.2299051294822017
+     }
+    ]
+   }
+  },
+  "0.55": {
+   "direct": {
+    "all": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 29.9075,
+     "time_all_se": 0.9593209963139474,
+     "time_ok": 25.875,
+     "wrong_frac": 0.29050132011981583,
+     "switches": 2.703333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {},
+     "time": 29.9075,
+     "idle": 4.6431249999999995
+    }
+   },
+   "evidence": {
+    "0.05": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.059592592592592586,
+     "switches": 0.5766666666666667,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 3,
+      "refractory": 2
+     },
+     "time": 90.0,
+     "idle": 0.01812500000000001
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.10666666666666667,
+     "time_all": 87.9875,
+     "time_all_se": 0.4050271557985034,
+     "time_ok": 73.375,
+     "wrong_frac": 0.10184553986754603,
+     "switches": 1.85,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 87.9875,
+     "idle": 0.08812500000000002
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.7466666666666667,
+     "time_all": 62.958333333333336,
+     "time_all_se": 1.4012217123830935,
+     "time_ok": 54.625,
+     "wrong_frac": 0.16409570007830165,
+     "switches": 2.723333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.6,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 62.958333333333336,
+     "idle": 0.4018750000000001
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.07943783068783068,
+      "switches": 0.6333333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 2
+      },
+      "time": 90.0,
+      "idle": 0.025000000000000012
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.0797420634920635,
+      "switches": 0.6166666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 3
+      },
+      "time": 90.0,
+      "idle": 0.02250000000000001
+     },
+     {
+      "n": 120,
+      "success": 0.16666666666666666,
+      "time_all": 85.60208333333334,
+      "time_all_se": 1.1509666494877078,
+      "time_ok": 70.625,
+      "wrong_frac": 0.10890906974643369,
+      "switches": 1.9416666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 85.60208333333334,
+      "idle": 0.12000000000000004
+     },
+     {
+      "n": 120,
+      "success": 0.016666666666666666,
+      "time_all": 89.58125,
+      "time_all_se": 0.3480407660388794,
+      "time_ok": 64.875,
+      "wrong_frac": 0.1353818074370693,
+      "switches": 1.8416666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 89.58125,
+      "idle": 0.15375000000000005
+     },
+     {
+      "n": 120,
+      "success": 0.016666666666666666,
+      "time_all": 89.89375,
+      "time_all_se": 0.0821872786659213,
+      "time_ok": 83.625,
+      "wrong_frac": 0.1441116820575464,
+      "switches": 1.8083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 2,
+       "refractory": 2
+      },
+      "time": 89.89375,
+      "idle": 0.15375000000000005
+     },
+     {
+      "n": 120,
+      "success": 0.30833333333333335,
+      "time_all": 82.2,
+      "time_all_se": 1.3948704296120706,
+      "time_ok": 70.75,
+      "wrong_frac": 0.13185660489179837,
+      "switches": 2.3916666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 82.2,
+      "idle": 0.25625000000000014
+     },
+     {
+      "n": 120,
+      "success": 0.3416666666666667,
+      "time_all": 79.93958333333333,
+      "time_all_se": 1.5365783881074162,
+      "time_ok": 62.75,
+      "wrong_frac": 0.14501713098741606,
+      "switches": 2.841666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 79.93958333333333,
+      "idle": 0.3512500000000002
+     },
+     {
+      "n": 120,
+      "success": 0.6833333333333333,
+      "time_all": 63.583333333333336,
+      "time_all_se": 2.2709176544877296,
+      "time_ok": 51.25,
+      "wrong_frac": 0.16478627803526347,
+      "switches": 2.8666666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 63.583333333333336,
+      "idle": 0.5237500000000002
+     },
+     {
+      "n": 120,
+      "success": 0.43333333333333335,
+      "time_all": 79.92083333333333,
+      "time_all_se": 1.395373581210108,
+      "time_ok": 70.625,
+      "wrong_frac": 0.24273758250839347,
+      "switches": 5.191666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 2
+      },
+      "time": 79.92083333333333,
+      "idle": 0.7387500000000004
+     },
+     {
+      "n": 120,
+      "success": 0.4166666666666667,
+      "time_all": 79.08125,
+      "time_all_se": 1.484142848203147,
+      "time_ok": 64.875,
+      "wrong_frac": 0.22457861964928613,
+      "switches": 4.816666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.5,
+       "hold": 2,
+       "refractory": 1
+      },
+      "time": 79.08125,
+      "idle": 0.7250000000000004
+     },
+     {
+      "n": 120,
+      "success": 0.8166666666666667,
+      "time_all": 54.51875,
+      "time_all_se": 2.2786692070629924,
+      "time_ok": 44.375,
+      "wrong_frac": 0.1941074293390334,
+      "switches": 3.191666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 54.51875,
+      "idle": 1.0075
+     },
+     {
+      "n": 120,
+      "success": 0.9416666666666667,
+      "time_all": 41.56666666666667,
+      "time_all_se": 2.0287925143526095,
+      "time_ok": 35.5,
+      "wrong_frac": 0.22199598011763472,
+      "switches": 2.725,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 41.56666666666667,
+      "idle": 1.6449999999999982
+     },
+     {
+      "n": 120,
+      "success": 0.9583333333333334,
+      "time_all": 40.00625,
+      "time_all_se": 1.9912766306877026,
+      "time_ok": 35.0,
+      "wrong_frac": 0.2346154982504603,
+      "switches": 2.8583333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 40.00625,
+      "idle": 1.981249999999997
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 27.16875,
+      "time_all_se": 1.388289364944977,
+      "time_ok": 24.75,
+      "wrong_frac": 0.24315077234125207,
+      "switches": 2.3833333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.4,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 27.16875,
+      "idle": 3.5074999999999923
+     }
+    ]
+   },
+   "proportional": {
+    "0.05": {
+     "n": 300,
+     "success": 0.0,
+     "time_all": 90.0,
+     "time_all_se": 0.0,
+     "time_ok": NaN,
+     "wrong_frac": 0.014550264550264551,
+     "switches": 0.47333333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 1
+     },
+     "time": 90.0,
+     "idle": 0.0009351486108513475
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.1,
+     "time_all": 88.32416666666667,
+     "time_all_se": 0.3357305764656942,
+     "time_ok": 74.375,
+     "wrong_frac": 0.13450654457893121,
+     "switches": 1.87,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.7,
+      "theta": 0.7,
+      "gamma": 0.5,
+      "vmax": 0.3,
+      "hold": 1
+     },
+     "time": 88.32416666666667,
+     "idle": 0.1368574251505234
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.7666666666666667,
+     "time_all": 62.185,
+     "time_all_se": 1.3303531668301403,
+     "time_ok": 55.625,
+     "wrong_frac": 0.20364308682488225,
+     "switches": 2.97,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.7,
+      "theta": 0.6,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 1
+     },
+     "time": 62.185,
+     "idle": 0.6055817914681313
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.04742063492063491,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.003789796042640134
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.04955026455026455,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 90.0,
+      "idle": 0.00691447752964928
+     },
+     {
+      "n": 120,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.05602934102934102,
+      "switches": 0.5333333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.009204550166567228
+     },
+     {
+      "n": 120,
+      "success": 0.06666666666666667,
+      "time_all": 87.60625,
+      "time_all_se": 0.981693707777205,
+      "time_ok": 64.5,
+      "wrong_frac": 0.09964399713315934,
+      "switches": 1.4583333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 87.60625,
+      "idle": 0.09029677433278656
+     },
+     {
+      "n": 120,
+      "success": 0.1,
+      "time_all": 87.15416666666667,
+      "time_all_se": 0.9682240635832117,
+      "time_ok": 70.0,
+      "wrong_frac": 0.1439629738225654,
+      "switches": 2.0083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 87.15416666666667,
+      "idle": 0.203007590512557
+     },
+     {
+      "n": 120,
+      "success": 0.275,
+      "time_all": 82.91875,
+      "time_all_se": 1.3471172227388823,
+      "time_ok": 69.25,
+      "wrong_frac": 0.15518813314107083,
+      "switches": 2.2916666666666665,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 82.91875,
+      "idle": 0.2694632089346758
+     },
+     {
+      "n": 120,
+      "success": 0.5,
+      "time_all": 74.02916666666667,
+      "time_all_se": 1.9960157779338745,
+      "time_ok": 59.5,
+      "wrong_frac": 0.1554924679811343,
+      "switches": 2.566666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 74.02916666666667,
+      "idle": 0.34847352504371976
+     },
+     {
+      "n": 120,
+      "success": 0.6583333333333333,
+      "time_all": 65.86875,
+      "time_all_se": 2.099179850392223,
+      "time_ok": 51.0,
+      "wrong_frac": 0.1838528802730347,
+      "switches": 2.683333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 65.86875,
+      "idle": 0.5336068513725197
+     },
+     {
+      "n": 120,
+      "success": 0.7,
+      "time_all": 64.03958333333334,
+      "time_all_se": 2.154824475670825,
+      "time_ok": 51.625,
+      "wrong_frac": 0.1993372965021257,
+      "switches": 3.0833333333333335,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.5,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 64.03958333333334,
+      "idle": 0.7231335686525756
+     },
+     {
+      "n": 120,
+      "success": 0.7333333333333333,
+      "time_all": 62.90833333333333,
+      "time_all_se": 2.1519239594738493,
+      "time_ok": 49.625,
+      "wrong_frac": 0.207484399514305,
+      "switches": 3.1,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 62.90833333333333,
+      "idle": 0.7719270346424331
+     },
+     {
+      "n": 120,
+      "success": 0.875,
+      "time_all": 50.05625,
+      "time_all_se": 2.217214573075918,
+      "time_ok": 42.25,
+      "wrong_frac": 0.22071206929557738,
+      "switches": 3.0166666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 50.05625,
+      "idle": 1.0924771488422431
+     },
+     {
+      "n": 120,
+      "success": 0.925,
+      "time_all": 42.15,
+      "time_all_se": 2.0959152283090323,
+      "time_ok": 36.25,
+      "wrong_frac": 0.2474433606826153,
+      "switches": 2.908333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 42.15,
+      "idle": 1.8064226938773853
+     },
+     {
+      "n": 120,
+      "success": 0.975,
+      "time_all": 33.48125,
+      "time_all_se": 1.7256995356753075,
+      "time_ok": 30.25,
+      "wrong_frac": 0.26690566559992185,
+      "switches": 2.466666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 33.48125,
+      "idle": 2.472169034651816
+     },
+     {
+      "n": 120,
+      "success": 0.9833333333333333,
+      "time_all": 31.583333333333332,
+      "time_all_se": 1.7749924382737632,
+      "time_ok": 25.75,
+      "wrong_frac": 0.27453766389264395,
+      "switches": 2.533333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 31.583333333333332,
+      "idle": 3.156713203077763
+     }
+    ]
+   },
+   "shared": {
+    "0.05": {
+     "n": 300,
+     "success": 0.023333333333333334,
+     "time_all": 89.64916666666667,
+     "time_all_se": 0.16438840714016612,
+     "time_ok": 77.75,
+     "wrong_frac": 0.014226190476190474,
+     "switches": 0.47333333333333333,
+     "wrong_commits": 0.0033333333333333335,
+     "auto_commits": 0.03,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 1,
+      "kappa": 0.6,
+      "tau": 0.8
+     },
+     "time": 89.64916666666667,
+     "idle": 0.0009351486108513475
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.7666666666666667,
+     "time_all": 55.214166666666664,
+     "time_all_se": 1.6274905527681824,
+     "time_ok": 42.875,
+     "wrong_frac": 0.11154296849179687,
+     "switches": 0.7666666666666667,
+     "wrong_commits": 0.07666666666666666,
+     "auto_commits": 0.8566666666666667,
+     "params": {
+      "alpha": 0.7,
+      "theta": 0.7,
+      "gamma": 0.5,
+      "vmax": 0.3,
+      "hold": 1,
+      "kappa": 0.3,
+      "tau": 0.8
+     },
+     "time": 55.214166666666664,
+     "idle": 0.20899683569083768
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.9533333333333334,
+     "time_all": 32.29333333333334,
+     "time_all_se": 1.3580227842608292,
+     "time_ok": 23.5,
+     "wrong_frac": 0.15346124822930207,
+     "switches": 0.98,
+     "wrong_commits": 0.14333333333333334,
+     "auto_commits": 1.1,
+     "params": {
+      "alpha": 0.7,
+      "theta": 0.6,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 1,
+      "kappa": 0.6,
+      "tau": 0.97
+     },
+     "time": 32.29333333333334,
+     "idle": 0.794864220159944
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.016666666666666666,
+      "time_all": 89.38541666666667,
+      "time_all_se": 0.4387751109405124,
+      "time_ok": 53.125,
+      "wrong_frac": 0.04742063492063491,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.016666666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 89.38541666666667,
+      "idle": 0.003789796042640134
+     },
+     {
+      "n": 120,
+      "success": 0.016666666666666666,
+      "time_all": 89.31041666666667,
+      "time_all_se": 0.5008395947422001,
+      "time_ok": 48.625,
+      "wrong_frac": 0.04742063492063491,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.016666666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 89.31041666666667,
+      "idle": 0.003789796042640134
+     },
+     {
+      "n": 120,
+      "success": 0.016666666666666666,
+      "time_all": 89.31041666666667,
+      "time_all_se": 0.5008395947422001,
+      "time_ok": 48.625,
+      "wrong_frac": 0.04742063492063491,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.016666666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 89.31041666666667,
+      "idle": 0.003789796042640134
+     },
+     {
+      "n": 120,
+      "success": 0.008333333333333333,
+      "time_all": 89.64166666666667,
+      "time_all_se": 0.3583333333333334,
+      "time_ok": 47.0,
+      "wrong_frac": 0.04742063492063491,
+      "switches": 0.5083333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.008333333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 89.64166666666667,
+      "idle": 0.003789796042640134
+     },
+     {
+      "n": 120,
+      "success": 0.8166666666666667,
+      "time_all": 54.791666666666664,
+      "time_all_se": 2.49661594025351,
+      "time_ok": 47.25,
+      "wrong_frac": 0.11020274390736755,
+      "switches": 0.8666666666666667,
+      "wrong_commits": 0.09166666666666666,
+      "auto_commits": 0.9333333333333333,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 54.791666666666664,
+      "idle": 0.2503725160322963
+     },
+     {
+      "n": 120,
+      "success": 0.7916666666666666,
+      "time_all": 52.59583333333333,
+      "time_all_se": 2.595786123008833,
+      "time_ok": 42.25,
+      "wrong_frac": 0.11028520403244738,
+      "switches": 0.7,
+      "wrong_commits": 0.18333333333333332,
+      "auto_commits": 0.9833333333333333,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 52.59583333333333,
+      "idle": 0.49753481306543285
+     },
+     {
+      "n": 120,
+      "success": 0.825,
+      "time_all": 53.833333333333336,
+      "time_all_se": 2.507611545461505,
+      "time_ok": 47.0,
+      "wrong_frac": 0.11310994712590876,
+      "switches": 0.8,
+      "wrong_commits": 0.125,
+      "auto_commits": 0.9583333333333334,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 53.833333333333336,
+      "idle": 0.39712037519984456
+     },
+     {
+      "n": 120,
+      "success": 0.8083333333333333,
+      "time_all": 56.208333333333336,
+      "time_all_se": 2.4676235699757587,
+      "time_ok": 47.5,
+      "wrong_frac": 0.11102234019350696,
+      "switches": 0.9583333333333334,
+      "wrong_commits": 0.06666666666666667,
+      "auto_commits": 0.9,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 56.208333333333336,
+      "idle": 0.2503725160322963
+     },
+     {
+      "n": 120,
+      "success": 0.9583333333333334,
+      "time_all": 35.266666666666666,
+      "time_all_se": 2.0777721293431717,
+      "time_ok": 29.0,
+      "wrong_frac": 0.16607055679668425,
+      "switches": 1.1,
+      "wrong_commits": 0.10833333333333334,
+      "auto_commits": 1.0666666666666667,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.9
+      },
+      "time": 35.266666666666666,
+      "idle": 0.922400250940391
+     },
+     {
+      "n": 120,
+      "success": 0.95,
+      "time_all": 32.93333333333333,
+      "time_all_se": 2.2982850698665764,
+      "time_ok": 24.125,
+      "wrong_frac": 0.15112152126956283,
+      "switches": 1.0416666666666667,
+      "wrong_commits": 0.175,
+      "auto_commits": 1.1333333333333333,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 32.93333333333333,
+      "idle": 0.9890007457447529
+     },
+     {
+      "n": 120,
+      "success": 0.95,
+      "time_all": 32.545833333333334,
+      "time_all_se": 2.199586921950927,
+      "time_ok": 24.5,
+      "wrong_frac": 0.15327671243019464,
+      "switches": 0.9916666666666667,
+      "wrong_commits": 0.15,
+      "auto_commits": 1.1083333333333334,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 32.545833333333334,
+      "idle": 0.9757029626934923
+     },
+     {
+      "n": 120,
+      "success": 0.9166666666666666,
+      "time_all": 32.010416666666664,
+      "time_all_se": 2.436778327831496,
+      "time_ok": 19.75,
+      "wrong_frac": 0.14974140794777582,
+      "switches": 1.0166666666666666,
+      "wrong_commits": 0.20833333333333334,
+      "auto_commits": 1.1333333333333333,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 32.010416666666664,
+      "idle": 1.1383006007313667
+     },
+     {
+      "n": 120,
+      "success": 0.925,
+      "time_all": 30.070833333333333,
+      "time_all_se": 2.377137073547346,
+      "time_ok": 18.25,
+      "wrong_frac": 0.1397233989368846,
+      "switches": 0.9166666666666666,
+      "wrong_commits": 0.2833333333333333,
+      "auto_commits": 1.2083333333333333,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 30.070833333333333,
+      "idle": 1.256238806891998
+     }
+    ]
+   }
+  },
+  "0.65": {
+   "direct": {
+    "all": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 20.995833333333334,
+     "time_all_se": 0.6163164417966122,
+     "time_ok": 18.75,
+     "wrong_frac": 0.23811925169673703,
+     "switches": 2.6,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {},
+     "time": 20.995833333333334,
+     "idle": 3.619999999999993
+    }
+   },
+   "evidence": {
+    "0.05": {
+     "n": 300,
+     "success": 0.006666666666666667,
+     "time_all": 89.92583333333333,
+     "time_all_se": 0.052757019818187395,
+     "time_ok": 78.875,
+     "wrong_frac": 0.051489407630005285,
+     "switches": 1.7433333333333334,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 3,
+      "refractory": 3
+     },
+     "time": 89.92583333333333,
+     "idle": 0.04312500000000002
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.67,
+     "time_all": 73.165,
+     "time_all_se": 0.9965259191156758,
+     "time_ok": 65.75,
+     "wrong_frac": 0.09363617597494885,
+     "switches": 5.023333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 1,
+      "refractory": 1
+     },
+     "time": 73.165,
+     "idle": 0.14437500000000006
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 28.195,
+     "time_all_se": 0.7802508851012129,
+     "time_ok": 25.375,
+     "wrong_frac": 0.1255415987558362,
+     "switches": 2.43,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.6,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 28.195,
+     "idle": 0.6806250000000003
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.025,
+      "time_all": 89.68541666666667,
+      "time_all_se": 0.26842952577127016,
+      "time_ok": 86.75,
+      "wrong_frac": 0.059012724353834076,
+      "switches": 2.158333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 2
+      },
+      "time": 89.68541666666667,
+      "idle": 0.06250000000000003
+     },
+     {
+      "n": 120,
+      "success": 0.016666666666666666,
+      "time_all": 89.75833333333334,
+      "time_all_se": 0.21070637279608193,
+      "time_ok": 75.5,
+      "wrong_frac": 0.06284116642861931,
+      "switches": 1.8416666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 3
+      },
+      "time": 89.75833333333334,
+      "idle": 0.057500000000000016
+     },
+     {
+      "n": 120,
+      "success": 0.05,
+      "time_all": 88.61875,
+      "time_all_se": 0.6169081391389276,
+      "time_ok": 60.625,
+      "wrong_frac": 0.057402896125606076,
+      "switches": 2.6166666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 1
+      },
+      "time": 88.61875,
+      "idle": 0.07250000000000001
+     },
+     {
+      "n": 120,
+      "success": 0.225,
+      "time_all": 85.2625,
+      "time_all_se": 1.0385465175174482,
+      "time_ok": 72.0,
+      "wrong_frac": 0.06900165250896198,
+      "switches": 3.6333333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 1
+      },
+      "time": 85.2625,
+      "idle": 0.10875000000000004
+     },
+     {
+      "n": 120,
+      "success": 0.5,
+      "time_all": 77.91666666666667,
+      "time_all_se": 1.5368783994684057,
+      "time_ok": 67.0,
+      "wrong_frac": 0.07499558057560483,
+      "switches": 4.666666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 77.91666666666667,
+      "idle": 0.14750000000000002
+     },
+     {
+      "n": 120,
+      "success": 0.25833333333333336,
+      "time_all": 86.25208333333333,
+      "time_all_se": 0.8189826808878834,
+      "time_ok": 78.0,
+      "wrong_frac": 0.07585261063109451,
+      "switches": 3.5166666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 3
+      },
+      "time": 86.25208333333333,
+      "idle": 0.12125000000000004
+     },
+     {
+      "n": 120,
+      "success": 0.6333333333333333,
+      "time_all": 72.68958333333333,
+      "time_all_se": 1.7226656652813985,
+      "time_ok": 63.0,
+      "wrong_frac": 0.10025897579389549,
+      "switches": 5.058333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 72.68958333333333,
+      "idle": 0.19500000000000003
+     },
+     {
+      "n": 120,
+      "success": 0.9583333333333334,
+      "time_all": 41.447916666666664,
+      "time_all_se": 1.887905854100581,
+      "time_ok": 35.5,
+      "wrong_frac": 0.08038703334611522,
+      "switches": 2.7333333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 41.447916666666664,
+      "idle": 0.32875000000000004
+     },
+     {
+      "n": 120,
+      "success": 0.9666666666666667,
+      "time_all": 38.775,
+      "time_all_se": 1.8179037817398,
+      "time_ok": 33.75,
+      "wrong_frac": 0.09840256466645962,
+      "switches": 2.8916666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 38.775,
+      "idle": 0.5100000000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 33.81458333333333,
+      "time_all_se": 1.4744749808421023,
+      "time_ok": 29.125,
+      "wrong_frac": 0.10652998346854463,
+      "switches": 2.9583333333333335,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 33.81458333333333,
+      "idle": 0.7325000000000002
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 27.908333333333335,
+      "time_all_se": 1.2546654298270068,
+      "time_ok": 25.375,
+      "wrong_frac": 0.12405881660432443,
+      "switches": 2.3666666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 27.908333333333335,
+      "idle": 0.8450000000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 21.05,
+      "time_all_se": 0.9646482356213559,
+      "time_ok": 18.75,
+      "wrong_frac": 0.15829566175069185,
+      "switches": 2.283333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 21.05,
+      "idle": 1.7537499999999977
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 21.7125,
+      "time_all_se": 0.9638314302357877,
+      "time_ok": 20.125,
+      "wrong_frac": 0.17507483922772865,
+      "switches": 2.466666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 21.7125,
+      "idle": 2.1462499999999967
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 18.383333333333333,
+      "time_all_se": 0.8141879865839742,
+      "time_ok": 17.0,
+      "wrong_frac": 0.20147443270105214,
+      "switches": 2.325,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 18.383333333333333,
+      "idle": 3.3137499999999926
+     }
+    ]
+   },
+   "proportional": {
+    "0.05": {
+     "n": 300,
+     "success": 0.21666666666666667,
+     "time_all": 85.14166666666667,
+     "time_all_se": 0.6786826472198251,
+     "time_ok": 68.5,
+     "wrong_frac": 0.04075014771415287,
+     "switches": 2.19,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.4,
+      "hold": 2
+     },
+     "time": 85.14166666666667,
+     "idle": 0.03403570207552151
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.8966666666666666,
+     "time_all": 52.208333333333336,
+     "time_all_se": 1.3084004342690323,
+     "time_ok": 47.75,
+     "wrong_frac": 0.1016966925985874,
+     "switches": 2.796666666666667,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 2
+     },
+     "time": 52.208333333333336,
+     "idle": 0.16020798140306572
+    },
+    "1.0": {
+     "n": 300,
+     "success": 0.9933333333333333,
+     "time_all": 33.81666666666667,
+     "time_all_se": 0.8270049564952031,
+     "time_ok": 31.5,
+     "wrong_frac": 0.14608393920639504,
+     "switches": 2.57,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "gamma": 0.5,
+      "vmax": 0.2,
+      "hold": 2
+     },
+     "time": 33.81666666666667,
+     "idle": 0.6331357541444053
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.041666666666666664,
+      "time_all": 89.20416666666667,
+      "time_all_se": 0.4851793624755443,
+      "time_ok": 82.5,
+      "wrong_frac": 0.03413745567862518,
+      "switches": 1.4,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2
+      },
+      "time": 89.20416666666667,
+      "idle": 0.020488076321083643
+     },
+     {
+      "n": 120,
+      "success": 0.25,
+      "time_all": 83.75833333333334,
+      "time_all_se": 1.3245914402789,
+      "time_ok": 71.875,
+      "wrong_frac": 0.046628192904931774,
+      "switches": 2.191666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 83.75833333333334,
+      "idle": 0.04858921175908114
+     },
+     {
+      "n": 120,
+      "success": 0.275,
+      "time_all": 83.82916666666667,
+      "time_all_se": 1.2315621390281457,
+      "time_ok": 71.75,
+      "wrong_frac": 0.05916907917067709,
+      "switches": 2.4833333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 83.82916666666667,
+      "idle": 0.08288405748558703
+     },
+     {
+      "n": 120,
+      "success": 0.4666666666666667,
+      "time_all": 77.76458333333333,
+      "time_all_se": 1.6485189214550815,
+      "time_ok": 65.5,
+      "wrong_frac": 0.06503479747264618,
+      "switches": 2.775,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 77.76458333333333,
+      "idle": 0.09534948379141912
+     },
+     {
+      "n": 120,
+      "success": 0.6583333333333333,
+      "time_all": 67.35833333333333,
+      "time_all_se": 2.087642741839151,
+      "time_ok": 55.0,
+      "wrong_frac": 0.08056252183815056,
+      "switches": 2.7583333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 67.35833333333333,
+      "idle": 0.13671094908127981
+     },
+     {
+      "n": 120,
+      "success": 0.8083333333333333,
+      "time_all": 57.93333333333333,
+      "time_all_se": 2.1781452300808586,
+      "time_ok": 50.0,
+      "wrong_frac": 0.06992225165393412,
+      "switches": 2.95,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 57.93333333333333,
+      "idle": 0.18214152788391996
+     },
+     {
+      "n": 120,
+      "success": 0.8583333333333333,
+      "time_all": 53.197916666666664,
+      "time_all_se": 2.194014201838451,
+      "time_ok": 45.5,
+      "wrong_frac": 0.09706181364524992,
+      "switches": 2.816666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 53.197916666666664,
+      "idle": 0.23756045010228505
+     },
+     {
+      "n": 120,
+      "success": 0.9666666666666667,
+      "time_all": 41.139583333333334,
+      "time_all_se": 1.8077525138143629,
+      "time_ok": 37.75,
+      "wrong_frac": 0.12007227134543123,
+      "switches": 2.5166666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 41.139583333333334,
+      "idle": 0.38437732507776784
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 37.89791666666667,
+      "time_all_se": 1.6890275942764694,
+      "time_ok": 32.0,
+      "wrong_frac": 0.11625632361300857,
+      "switches": 2.65,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 37.89791666666667,
+      "idle": 0.4860835516834497
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 35.4375,
+      "time_all_se": 1.41075938214627,
+      "time_ok": 33.625,
+      "wrong_frac": 0.15047628392266724,
+      "switches": 2.45,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 2
+      },
+      "time": 35.4375,
+      "idle": 0.7417712335138045
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 27.016666666666666,
+      "time_all_se": 1.242800461804634,
+      "time_ok": 24.375,
+      "wrong_frac": 0.15616846987205354,
+      "switches": 2.55,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 27.016666666666666,
+      "idle": 1.0798086853364488
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 22.6625,
+      "time_all_se": 0.943324112727254,
+      "time_ok": 20.625,
+      "wrong_frac": 0.1996708549233785,
+      "switches": 2.316666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 22.6625,
+      "idle": 1.864509035298641
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 20.364583333333332,
+      "time_all_se": 0.9563105669717695,
+      "time_ok": 18.375,
+      "wrong_frac": 0.2177618673693137,
+      "switches": 2.5,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 20.364583333333332,
+      "idle": 2.6550339824215743
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 18.616666666666667,
+      "time_all_se": 0.9272274893430761,
+      "time_ok": 16.25,
+      "wrong_frac": 0.24055081046651886,
+      "switches": 2.675,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 18.616666666666667,
+      "idle": 3.3761289174836207
+     }
+    ]
+   },
+   "shared": {
+    "0.05": {
+     "n": 300,
+     "success": 0.8866666666666667,
+     "time_all": 44.64083333333333,
+     "time_all_se": 1.529604229937125,
+     "time_ok": 35.75,
+     "wrong_frac": 0.03366496692595294,
+     "switches": 0.68,
+     "wrong_commits": 0.05333333333333334,
+     "auto_commits": 0.9466666666666667,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.4,
+      "hold": 2,
+      "kappa": 0.3,
+      "tau": 0.8
+     },
+     "time": 44.64083333333333,
+     "idle": 0.08143391871765579
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.9966666666666667,
+     "time_all": 25.243333333333332,
+     "time_all_se": 1.0562093390835445,
+     "time_ok": 20.5,
+     "wrong_frac": 0.06858193840780186,
+     "switches": 0.9033333333333333,
+     "wrong_commits": 0.08,
+     "auto_commits": 1.0766666666666667,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 2,
+      "kappa": 0.3,
+      "tau": 0.8
+     },
+     "time": 25.243333333333332,
+     "idle": 0.20443250448376293
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 17.725,
+     "time_all_se": 0.6058435480239713,
+     "time_ok": 15.125,
+     "wrong_frac": 0.13152149293724738,
+     "switches": 0.8733333333333333,
+     "wrong_commits": 0.03666666666666667,
+     "auto_commits": 1.0366666666666666,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "gamma": 0.5,
+      "vmax": 0.2,
+      "hold": 2,
+      "kappa": 0.15,
+      "tau": 0.8
+     },
+     "time": 17.725,
+     "idle": 0.7713660497231187
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.9333333333333333,
+      "time_all": 41.84166666666667,
+      "time_all_se": 2.270683667619518,
+      "time_ok": 39.0,
+      "wrong_frac": 0.04270980949272028,
+      "switches": 0.7416666666666667,
+      "wrong_commits": 0.041666666666666664,
+      "auto_commits": 0.975,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 41.84166666666667,
+      "idle": 0.10170000021174239
+     },
+     {
+      "n": 120,
+      "success": 0.925,
+      "time_all": 40.78541666666667,
+      "time_all_se": 2.3144297834738294,
+      "time_ok": 38.5,
+      "wrong_frac": 0.0391336442463897,
+      "switches": 0.7083333333333334,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.025,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 40.78541666666667,
+      "idle": 0.3040306565858693
+     },
+     {
+      "n": 120,
+      "success": 0.9416666666666667,
+      "time_all": 40.99791666666667,
+      "time_all_se": 2.247250685348385,
+      "time_ok": 39.0,
+      "wrong_frac": 0.04253206388461883,
+      "switches": 0.7333333333333333,
+      "wrong_commits": 0.05,
+      "auto_commits": 0.9916666666666667,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 40.99791666666667,
+      "idle": 0.25653065658586927
+     },
+     {
+      "n": 120,
+      "success": 0.9333333333333333,
+      "time_all": 42.67916666666667,
+      "time_all_se": 2.2605537254011097,
+      "time_ok": 39.5,
+      "wrong_frac": 0.044437861097679505,
+      "switches": 0.7666666666666667,
+      "wrong_commits": 0.041666666666666664,
+      "auto_commits": 0.975,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 42.67916666666667,
+      "idle": 0.1500411962781966
+     },
+     {
+      "n": 120,
+      "success": 0.9833333333333333,
+      "time_all": 24.064583333333335,
+      "time_all_se": 1.6574187471194441,
+      "time_ok": 18.375,
+      "wrong_frac": 0.051563026859662124,
+      "switches": 0.8333333333333334,
+      "wrong_commits": 0.06666666666666667,
+      "auto_commits": 1.0583333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 24.064583333333335,
+      "idle": 0.325913284217803
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 21.06875,
+      "time_all_se": 1.554686943558731,
+      "time_ok": 15.75,
+      "wrong_frac": 0.04071389571669867,
+      "switches": 0.7,
+      "wrong_commits": 0.09166666666666666,
+      "auto_commits": 1.0916666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 21.06875,
+      "idle": 0.5078610893624675
+     },
+     {
+      "n": 120,
+      "success": 0.9833333333333333,
+      "time_all": 22.872916666666665,
+      "time_all_se": 1.7138753341495025,
+      "time_ok": 17.25,
+      "wrong_frac": 0.046700388644721195,
+      "switches": 0.7833333333333333,
+      "wrong_commits": 0.09166666666666666,
+      "auto_commits": 1.0833333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 22.872916666666665,
+      "idle": 0.43654647270876656
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 24.2375,
+      "time_all_se": 1.6315957769655338,
+      "time_ok": 19.25,
+      "wrong_frac": 0.054620876289155684,
+      "switches": 0.875,
+      "wrong_commits": 0.058333333333333334,
+      "auto_commits": 1.05,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 24.2375,
+      "idle": 0.325913284217803
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 18.170833333333334,
+      "time_all_se": 0.9887408141296065,
+      "time_ok": 15.0,
+      "wrong_frac": 0.13025697154084778,
+      "switches": 0.9166666666666666,
+      "wrong_commits": 0.05,
+      "auto_commits": 1.05,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.15,
+       "tau": 0.8
+      },
+      "time": 18.170833333333334,
+      "idle": 0.8922299773739585
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 16.514583333333334,
+      "time_all_se": 1.0329281750381203,
+      "time_ok": 13.625,
+      "wrong_frac": 0.11846677519546521,
+      "switches": 0.8333333333333334,
+      "wrong_commits": 0.075,
+      "auto_commits": 1.075,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.9
+      },
+      "time": 16.514583333333334,
+      "idle": 1.08090756352718
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 16.085416666666667,
+      "time_all_se": 1.1099660573193342,
+      "time_ok": 12.375,
+      "wrong_frac": 0.11074515233438191,
+      "switches": 0.8,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.1,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 16.085416666666667,
+      "idle": 1.1207161560660797
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 15.9375,
+      "time_all_se": 1.136700938289946,
+      "time_ok": 12.25,
+      "wrong_frac": 0.10677616036784623,
+      "switches": 0.675,
+      "wrong_commits": 0.15,
+      "auto_commits": 1.15,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 15.9375,
+      "idle": 1.2720972847660945
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 16.402083333333334,
+      "time_all_se": 1.2489116264339617,
+      "time_ok": 11.75,
+      "wrong_frac": 0.10187865092491608,
+      "switches": 0.6833333333333333,
+      "wrong_commits": 0.2,
+      "auto_commits": 1.2,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 16.402083333333334,
+      "idle": 1.2899382421244994
+     }
+    ]
+   }
+  },
+  "0.75": {
+   "direct": {
+    "all": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 14.988333333333333,
+     "time_all_se": 0.3532648989279391,
+     "time_ok": 13.75,
+     "wrong_frac": 0.1695955300417826,
+     "switches": 2.4133333333333336,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {},
+     "time": 14.988333333333333,
+     "idle": 2.558749999999995
+    }
+   },
+   "evidence": {
+    "0.05": {
+     "n": 300,
+     "success": 0.7066666666666667,
+     "time_all": 77.04,
+     "time_all_se": 0.7067964768975139,
+     "time_ok": 71.875,
+     "wrong_frac": 0.03278373184687064,
+     "switches": 4.953333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 3,
+      "refractory": 2
+     },
+     "time": 77.04,
+     "idle": 0.05875000000000004
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.9966666666666667,
+     "time_all": 47.48083333333334,
+     "time_all_se": 0.7995544836090803,
+     "time_ok": 44.25,
+     "wrong_frac": 0.05795351878417999,
+     "switches": 5.47,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 2,
+      "refractory": 0
+     },
+     "time": 47.48083333333334,
+     "idle": 0.13312500000000005
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 17.676666666666666,
+     "time_all_se": 0.4189160465200138,
+     "time_ok": 16.375,
+     "wrong_frac": 0.0976142225532521,
+     "switches": 2.3033333333333332,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.6,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 17.676666666666666,
+     "idle": 0.6262500000000002
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.6583333333333333,
+      "time_all": 76.9125,
+      "time_all_se": 1.277548840520771,
+      "time_ok": 71.25,
+      "wrong_frac": 0.03354823813615312,
+      "switches": 4.908333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 2
+      },
+      "time": 76.9125,
+      "idle": 0.07500000000000002
+     },
+     {
+      "n": 120,
+      "success": 0.825,
+      "time_all": 70.60416666666667,
+      "time_all_se": 1.3893936699419271,
+      "time_ok": 66.75,
+      "wrong_frac": 0.03903823085662452,
+      "switches": 5.458333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 1
+      },
+      "time": 70.60416666666667,
+      "idle": 0.08625000000000002
+     },
+     {
+      "n": 120,
+      "success": 0.95,
+      "time_all": 56.235416666666666,
+      "time_all_se": 1.4211299844541851,
+      "time_ok": 53.5,
+      "wrong_frac": 0.04542739244645054,
+      "switches": 5.55,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 1
+      },
+      "time": 56.235416666666666,
+      "idle": 0.12000000000000002
+     },
+     {
+      "n": 120,
+      "success": 0.9333333333333333,
+      "time_all": 60.1875,
+      "time_all_se": 1.4058272395963298,
+      "time_ok": 57.0,
+      "wrong_frac": 0.054918227228492315,
+      "switches": 5.333333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 3
+      },
+      "time": 60.1875,
+      "idle": 0.14000000000000007
+     },
+     {
+      "n": 120,
+      "success": 0.9833333333333333,
+      "time_all": 48.72083333333333,
+      "time_all_se": 1.425075503348073,
+      "time_ok": 44.875,
+      "wrong_frac": 0.05957657468696536,
+      "switches": 5.591666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 48.72083333333333,
+      "idle": 0.16000000000000003
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 41.610416666666666,
+      "time_all_se": 1.092175170099806,
+      "time_ok": 40.75,
+      "wrong_frac": 0.08563016399789337,
+      "switches": 5.508333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 2
+      },
+      "time": 41.610416666666666,
+      "idle": 0.34625000000000006
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 38.925,
+      "time_all_se": 1.148561242237813,
+      "time_ok": 37.375,
+      "wrong_frac": 0.09175021619469209,
+      "switches": 5.758333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 38.925,
+      "idle": 0.3537500000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 21.641666666666666,
+      "time_all_se": 0.8364179605128851,
+      "time_ok": 20.125,
+      "wrong_frac": 0.058080488946314554,
+      "switches": 2.283333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 21.641666666666666,
+      "idle": 0.3612500000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 32.71666666666667,
+      "time_all_se": 0.9089739600949628,
+      "time_ok": 32.0,
+      "wrong_frac": 0.12965923016681133,
+      "switches": 5.8,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 32.71666666666667,
+      "idle": 0.7025000000000003
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 19.89375,
+      "time_all_se": 0.7397979232614165,
+      "time_ok": 18.875,
+      "wrong_frac": 0.08572894089785994,
+      "switches": 2.475,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 19.89375,
+      "idle": 0.8400000000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 17.539583333333333,
+      "time_all_se": 0.7041667443604618,
+      "time_ok": 15.5,
+      "wrong_frac": 0.08613392982658263,
+      "switches": 2.25,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 17.539583333333333,
+      "idle": 0.7662500000000003
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 16.502083333333335,
+      "time_all_se": 0.6197785804117157,
+      "time_ok": 15.0,
+      "wrong_frac": 0.10041460916603707,
+      "switches": 2.375,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 16.502083333333335,
+      "idle": 1.422499999999999
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 14.345833333333333,
+      "time_all_se": 0.5939204077542423,
+      "time_ok": 12.25,
+      "wrong_frac": 0.111159167373432,
+      "switches": 2.216666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 14.345833333333333,
+      "idle": 1.8037499999999977
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 13.85,
+      "time_all_se": 0.5572714514383769,
+      "time_ok": 12.125,
+      "wrong_frac": 0.14068290004666248,
+      "switches": 2.25,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 13.85,
+      "idle": 2.372499999999996
+     }
+    ]
+   },
+   "proportional": {
+    "0.05": {
+     "n": 300,
+     "success": 0.8733333333333333,
+     "time_all": 62.46666666666667,
+     "time_all_se": 1.078828856663339,
+     "time_ok": 58.625,
+     "wrong_frac": 0.022677520129536593,
+     "switches": 2.8766666666666665,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 2
+     },
+     "time": 62.46666666666667,
+     "idle": 0.030300692478636527
+    },
+    "0.25": {
+     "n": 300,
+     "success": 0.9966666666666667,
+     "time_all": 29.0325,
+     "time_all_se": 0.6677293978654002,
+     "time_ok": 28.0,
+     "wrong_frac": 0.06165059589091155,
+     "switches": 2.513333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 1.0,
+      "vmax": 0.4,
+      "hold": 2
+     },
+     "time": 29.0325,
+     "idle": 0.1370905193628454
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 17.439166666666665,
+     "time_all_se": 0.45890880817595886,
+     "time_ok": 16.0,
+     "wrong_frac": 0.13626929721334782,
+     "switches": 2.32,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.6,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 1
+     },
+     "time": 17.439166666666665,
+     "idle": 0.5615791876073626
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.8666666666666667,
+      "time_all": 61.17916666666667,
+      "time_all_se": 1.907895799229862,
+      "time_ok": 55.5,
+      "wrong_frac": 0.023970717194728496,
+      "switches": 2.825,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2
+      },
+      "time": 61.17916666666667,
+      "idle": 0.036801172874232235
+     },
+     {
+      "n": 120,
+      "success": 0.9833333333333333,
+      "time_all": 47.67916666666667,
+      "time_all_se": 1.7140749911823654,
+      "time_ok": 46.625,
+      "wrong_frac": 0.0328767984034065,
+      "switches": 2.966666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 47.67916666666667,
+      "idle": 0.06131354902971399
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 36.94583333333333,
+      "time_all_se": 1.4462782555523883,
+      "time_ok": 35.0,
+      "wrong_frac": 0.05803551558534276,
+      "switches": 2.575,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 36.94583333333333,
+      "idle": 0.1310906135465865
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 32.97291666666667,
+      "time_all_se": 1.3294261593284937,
+      "time_ok": 30.25,
+      "wrong_frac": 0.05725421514859833,
+      "switches": 2.475,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 32.97291666666667,
+      "idle": 0.15124853004920374
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 29.352083333333333,
+      "time_all_se": 1.125044723019127,
+      "time_ok": 25.75,
+      "wrong_frac": 0.0612036626531992,
+      "switches": 2.408333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 29.352083333333333,
+      "idle": 0.1790139842403192
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 24.197916666666668,
+      "time_all_se": 0.9235286950831162,
+      "time_ok": 23.25,
+      "wrong_frac": 0.06385842174403199,
+      "switches": 2.3,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 24.197916666666668,
+      "idle": 0.2632434193044557
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 20.729166666666668,
+      "time_all_se": 0.7503359619457023,
+      "time_ok": 19.625,
+      "wrong_frac": 0.10569724990845816,
+      "switches": 2.283333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 1.0,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 20.729166666666668,
+      "idle": 0.5458332151656877
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 19.1875,
+      "time_all_se": 0.8009166776324513,
+      "time_ok": 17.75,
+      "wrong_frac": 0.09582104563680767,
+      "switches": 2.3666666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 19.1875,
+      "idle": 0.604428087248159
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 20.427083333333332,
+      "time_all_se": 0.7627212210277546,
+      "time_ok": 18.75,
+      "wrong_frac": 0.11875750899073576,
+      "switches": 2.225,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 20.427083333333332,
+      "idle": 0.7134922080849075
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 17.704166666666666,
+      "time_all_se": 0.7178995445527837,
+      "time_ok": 16.25,
+      "wrong_frac": 0.12852220523864136,
+      "switches": 2.308333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 17.704166666666666,
+      "idle": 0.6969494958803734
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 15.827083333333333,
+      "time_all_se": 0.6548595268770573,
+      "time_ok": 14.125,
+      "wrong_frac": 0.14986923097819702,
+      "switches": 2.5416666666666665,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.5,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 15.827083333333333,
+      "idle": 1.3676703746938235
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 14.75625,
+      "time_all_se": 0.6049042573326919,
+      "time_ok": 12.875,
+      "wrong_frac": 0.17220141273903683,
+      "switches": 2.216666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 14.75625,
+      "idle": 1.5754201328058601
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 13.779166666666667,
+      "time_all_se": 0.5710709701848465,
+      "time_ok": 12.375,
+      "wrong_frac": 0.17254362453671934,
+      "switches": 2.35,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 13.779166666666667,
+      "idle": 2.07308113061312
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 12.554166666666667,
+      "time_all_se": 0.6589064935736907,
+      "time_ok": 10.25,
+      "wrong_frac": 0.18628246989758626,
+      "switches": 2.5,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 12.554166666666667,
+      "idle": 2.7650738277889335
+     }
+    ]
+   },
+   "shared": {
+    "0.05": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 22.610833333333332,
+     "time_all_se": 0.8518194985447783,
+     "time_ok": 19.375,
+     "wrong_frac": 0.02124237893787283,
+     "switches": 0.6066666666666667,
+     "wrong_commits": 0.023333333333333334,
+     "auto_commits": 1.0233333333333334,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 2,
+      "kappa": 0.3,
+      "tau": 0.8
+     },
+     "time": 22.610833333333332,
+     "idle": 0.14781462030427783
+    },
+    "0.25": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 13.995,
+     "time_all_se": 0.48253924118822766,
+     "time_ok": 12.25,
+     "wrong_frac": 0.04640863331620017,
+     "switches": 0.84,
+     "wrong_commits": 0.02,
+     "auto_commits": 1.02,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 1.0,
+      "vmax": 0.4,
+      "hold": 2,
+      "kappa": 0.3,
+      "tau": 0.9
+     },
+     "time": 13.995,
+     "idle": 0.18284540620240863
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 9.75,
+     "time_all_se": 0.3580146232447484,
+     "time_ok": 7.5,
+     "wrong_frac": 0.0985117359830001,
+     "switches": 0.9533333333333334,
+     "wrong_commits": 0.056666666666666664,
+     "auto_commits": 1.0566666666666666,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.6,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 1,
+      "kappa": 0.3,
+      "tau": 0.9
+     },
+     "time": 9.75,
+     "idle": 0.7012072133222773
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 22.547916666666666,
+      "time_all_se": 1.2310798355778123,
+      "time_ok": 18.875,
+      "wrong_frac": 0.02093374964479563,
+      "switches": 0.6,
+      "wrong_commits": 0.025,
+      "auto_commits": 1.025,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 22.547916666666666,
+      "idle": 0.13915885230749958
+     },
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 23.141666666666666,
+      "time_all_se": 1.5235796449941574,
+      "time_ok": 18.25,
+      "wrong_frac": 0.013065436950724619,
+      "switches": 0.6166666666666667,
+      "wrong_commits": 0.09166666666666666,
+      "auto_commits": 1.0833333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 23.141666666666666,
+      "idle": 0.2936226538610754
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 22.0375,
+      "time_all_se": 1.2389979757423164,
+      "time_ok": 18.5,
+      "wrong_frac": 0.015917988764650934,
+      "switches": 0.6166666666666667,
+      "wrong_commits": 0.05,
+      "auto_commits": 1.05,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 22.0375,
+      "idle": 0.23901398108816663
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 22.825,
+      "time_all_se": 1.2330098845305903,
+      "time_ok": 19.0,
+      "wrong_frac": 0.02110716178285254,
+      "switches": 0.5916666666666667,
+      "wrong_commits": 0.016666666666666666,
+      "auto_commits": 1.0166666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 22.825,
+      "idle": 0.13915885230749958
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 12.735416666666667,
+      "time_all_se": 0.7536227620292836,
+      "time_ok": 11.75,
+      "wrong_frac": 0.031082872145798593,
+      "switches": 0.7333333333333333,
+      "wrong_commits": 0.041666666666666664,
+      "auto_commits": 1.0416666666666667,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 12.735416666666667,
+      "idle": 0.3665623686745643
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 13.627083333333333,
+      "time_all_se": 0.7929905403852703,
+      "time_ok": 12.125,
+      "wrong_frac": 0.028484216363190814,
+      "switches": 0.8,
+      "wrong_commits": 0.03333333333333333,
+      "auto_commits": 1.0333333333333334,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.9
+      },
+      "time": 13.627083333333333,
+      "idle": 0.27318663602828896
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 12.34375,
+      "time_all_se": 0.7496968487468841,
+      "time_ok": 10.875,
+      "wrong_frac": 0.03004394911320067,
+      "switches": 0.7166666666666667,
+      "wrong_commits": 0.041666666666666664,
+      "auto_commits": 1.0416666666666667,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 12.34375,
+      "idle": 0.4766466471741945
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 13.266666666666667,
+      "time_all_se": 0.7827788728447999,
+      "time_ok": 11.75,
+      "wrong_frac": 0.02976950074486131,
+      "switches": 0.7833333333333333,
+      "wrong_commits": 0.041666666666666664,
+      "auto_commits": 1.0416666666666667,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 13.266666666666667,
+      "idle": 0.3665623686745644
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 10.70625,
+      "time_all_se": 0.6599119186460785,
+      "time_ok": 8.75,
+      "wrong_frac": 0.10901392908597456,
+      "switches": 1.0083333333333333,
+      "wrong_commits": 0.05,
+      "auto_commits": 1.05,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.9
+      },
+      "time": 10.70625,
+      "idle": 1.0011467798746372
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 9.914583333333333,
+      "time_all_se": 0.6625782538830218,
+      "time_ok": 7.625,
+      "wrong_frac": 0.09785899443131,
+      "switches": 0.8416666666666667,
+      "wrong_commits": 0.08333333333333333,
+      "auto_commits": 1.0833333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 9.914583333333333,
+      "idle": 1.1153281039592207
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 8.85,
+      "time_all_se": 0.6672970583972764,
+      "time_ok": 6.5,
+      "wrong_frac": 0.07771253973452777,
+      "switches": 0.7416666666666667,
+      "wrong_commits": 0.15,
+      "auto_commits": 1.15,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 8.85,
+      "idle": 1.2810883521593546
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 9.33125,
+      "time_all_se": 0.649769422176666,
+      "time_ok": 7.25,
+      "wrong_frac": 0.0805143464738549,
+      "switches": 0.8416666666666667,
+      "wrong_commits": 0.125,
+      "auto_commits": 1.125,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 9.33125,
+      "idle": 1.2309656935303175
+     }
+    ]
+   }
+  },
+  "0.85": {
+   "direct": {
+    "all": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 11.513333333333334,
+     "time_all_se": 0.20772287372971565,
+     "time_ok": 10.5,
+     "wrong_frac": 0.10431089327457893,
+     "switches": 2.283333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {},
+     "time": 11.513333333333334,
+     "idle": 1.5574999999999988
+    }
+   },
+   "evidence": {
+    "0.05": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 54.09916666666667,
+     "time_all_se": 0.5560287029683918,
+     "time_ok": 52.125,
+     "wrong_frac": 0.01770614924759819,
+     "switches": 5.17,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "hold": 3,
+      "refractory": 2
+     },
+     "time": 54.09916666666667,
+     "idle": 0.04312500000000002
+    },
+    "0.25": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 27.33,
+     "time_all_se": 0.35174283387400634,
+     "time_ok": 26.5,
+     "wrong_frac": 0.05058467010807611,
+     "switches": 5.283333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.6,
+      "hold": 2,
+      "refractory": 0
+     },
+     "time": 27.33,
+     "idle": 0.2000000000000001
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 11.615,
+     "time_all_se": 0.19920151362961575,
+     "time_ok": 10.75,
+     "wrong_frac": 0.09576853938005907,
+     "switches": 2.21,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.5,
+      "hold": 1,
+      "refractory": 0
+     },
+     "time": 11.615,
+     "idle": 0.7356250000000003
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 0.9916666666666667,
+      "time_all": 54.26875,
+      "time_all_se": 1.0109829407450903,
+      "time_ok": 52.0,
+      "wrong_frac": 0.01866084428881898,
+      "switches": 5.25,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 2
+      },
+      "time": 54.26875,
+      "idle": 0.053750000000000006
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 47.9625,
+      "time_all_se": 0.8236303990952042,
+      "time_ok": 47.375,
+      "wrong_frac": 0.01858750125528027,
+      "switches": 5.183333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 1
+      },
+      "time": 47.9625,
+      "idle": 0.05500000000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 40.69583333333333,
+      "time_all_se": 0.7803173471297171,
+      "time_ok": 40.5,
+      "wrong_frac": 0.016376058572573217,
+      "switches": 5.216666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 3,
+       "refractory": 0
+      },
+      "time": 40.69583333333333,
+      "idle": 0.06875000000000002
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 34.833333333333336,
+      "time_all_se": 0.5744496615301635,
+      "time_ok": 34.75,
+      "wrong_frac": 0.02702207962929366,
+      "switches": 5.125,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 2
+      },
+      "time": 34.833333333333336,
+      "idle": 0.11250000000000002
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 31.4625,
+      "time_all_se": 0.6830573287988134,
+      "time_ok": 31.125,
+      "wrong_frac": 0.03068386103402134,
+      "switches": 5.2,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 31.4625,
+      "idle": 0.10375000000000004
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 36.510416666666664,
+      "time_all_se": 0.7413447580996383,
+      "time_ok": 35.875,
+      "wrong_frac": 0.032544000197648346,
+      "switches": 5.25,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.7,
+       "hold": 2,
+       "refractory": 1
+      },
+      "time": 36.510416666666664,
+      "idle": 0.14750000000000005
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 29.672916666666666,
+      "time_all_se": 0.7133051487517533,
+      "time_ok": 28.25,
+      "wrong_frac": 0.04982385436603183,
+      "switches": 5.466666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 29.672916666666666,
+      "idle": 0.15750000000000003
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 27.570833333333333,
+      "time_all_se": 0.6140011426112478,
+      "time_ok": 26.25,
+      "wrong_frac": 0.046556706064377874,
+      "switches": 5.266666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 2,
+       "refractory": 0
+      },
+      "time": 27.570833333333333,
+      "idle": 0.22375000000000012
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 14.410416666666666,
+      "time_all_se": 0.5424213324551568,
+      "time_ok": 12.5,
+      "wrong_frac": 0.03206686293155424,
+      "switches": 2.2083333333333335,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 14.410416666666666,
+      "idle": 0.2512500000000001
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 12.383333333333333,
+      "time_all_se": 0.40895453805080045,
+      "time_ok": 11.375,
+      "wrong_frac": 0.05238728734440699,
+      "switches": 2.175,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 12.383333333333333,
+      "idle": 0.49750000000000033
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 12.633333333333333,
+      "time_all_se": 0.4154737826292864,
+      "time_ok": 11.25,
+      "wrong_frac": 0.04086263074583832,
+      "switches": 2.3583333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.8,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 12.633333333333333,
+      "idle": 0.6712500000000003
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 11.183333333333334,
+      "time_all_se": 0.3520489909991109,
+      "time_ok": 10.375,
+      "wrong_frac": 0.07731472911148149,
+      "switches": 2.183333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 11.183333333333334,
+      "idle": 0.9112499999999999
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 11.33125,
+      "time_all_se": 0.3685149158070388,
+      "time_ok": 10.25,
+      "wrong_frac": 0.07408459978163479,
+      "switches": 2.1666666666666665,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.5,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 11.33125,
+      "idle": 1.1874999999999996
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 11.08125,
+      "time_all_se": 0.3255592379306119,
+      "time_ok": 10.25,
+      "wrong_frac": 0.08810850842813724,
+      "switches": 2.175,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.4,
+       "hold": 1,
+       "refractory": 0
+      },
+      "time": 11.08125,
+      "idle": 1.422499999999999
+     }
+    ]
+   },
+   "proportional": {
+    "0.05": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 29.038333333333334,
+     "time_all_se": 0.5273451541040668,
+     "time_ok": 27.75,
+     "wrong_frac": 0.012070241650625388,
+     "switches": 2.486666666666667,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 2
+     },
+     "time": 29.038333333333334,
+     "idle": 0.03288741968665004
+    },
+    "0.25": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 14.8675,
+     "time_all_se": 0.30856720393173986,
+     "time_ok": 13.75,
+     "wrong_frac": 0.04694485838881346,
+     "switches": 2.2733333333333334,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 0.5,
+      "vmax": 0.3,
+      "hold": 1
+     },
+     "time": 14.8675,
+     "idle": 0.16067435707582897
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 10.203333333333333,
+     "time_all_se": 0.21614971345122444,
+     "time_ok": 9.25,
+     "wrong_frac": 0.08755509122663362,
+     "switches": 2.243333333333333,
+     "wrong_commits": 0.0,
+     "auto_commits": 0.0,
+     "params": {
+      "alpha": 0.5,
+      "theta": 0.6,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 1
+     },
+     "time": 10.203333333333333,
+     "idle": 0.6414023663373541
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 29.54375,
+      "time_all_se": 0.8998213257321127,
+      "time_ok": 28.5,
+      "wrong_frac": 0.010234420670223619,
+      "switches": 2.5166666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2
+      },
+      "time": 29.54375,
+      "idle": 0.033418906422942596
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 29.822916666666668,
+      "time_all_se": 0.9436337432490561,
+      "time_ok": 28.5,
+      "wrong_frac": 0.014500024982343094,
+      "switches": 2.4916666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 1
+      },
+      "time": 29.822916666666668,
+      "idle": 0.03545021756336615
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 19.53125,
+      "time_all_se": 0.6579118946328906,
+      "time_ok": 18.75,
+      "wrong_frac": 0.02805397850365724,
+      "switches": 2.2416666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 19.53125,
+      "idle": 0.07144282674000949
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 19.770833333333332,
+      "time_all_se": 0.6279453242908861,
+      "time_ok": 18.75,
+      "wrong_frac": 0.031391058859129975,
+      "switches": 2.2666666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.6,
+       "gamma": 2.0,
+       "vmax": 0.3,
+       "hold": 2
+      },
+      "time": 19.770833333333332,
+      "idle": 0.09979198371797063
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 17.866666666666667,
+      "time_all_se": 0.5972768307172741,
+      "time_ok": 17.125,
+      "wrong_frac": 0.03342486312507723,
+      "switches": 2.341666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 17.866666666666667,
+      "idle": 0.12067619416327466
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 15.952083333333333,
+      "time_all_se": 0.5737556245897428,
+      "time_ok": 14.875,
+      "wrong_frac": 0.03572834556994929,
+      "switches": 2.325,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 15.952083333333333,
+      "idle": 0.14174002826697824
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 15.260416666666666,
+      "time_all_se": 0.5892239281263596,
+      "time_ok": 13.5,
+      "wrong_frac": 0.044804010838537904,
+      "switches": 2.2666666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 15.260416666666666,
+      "idle": 0.1954495660302787
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 12.820833333333333,
+      "time_all_se": 0.47125145659276535,
+      "time_ok": 11.625,
+      "wrong_frac": 0.04874044205785552,
+      "switches": 2.225,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 12.820833333333333,
+      "idle": 0.25270278971003185
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 11.185416666666667,
+      "time_all_se": 0.38056671024939465,
+      "time_ok": 10.25,
+      "wrong_frac": 0.10524727654099214,
+      "switches": 2.2333333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1
+      },
+      "time": 11.185416666666667,
+      "idle": 0.641376356969807
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 10.483333333333333,
+      "time_all_se": 0.3801321702426776,
+      "time_ok": 9.0,
+      "wrong_frac": 0.05776738780078169,
+      "switches": 2.45,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 10.483333333333333,
+      "idle": 0.6950897714321524
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 9.766666666666667,
+      "time_all_se": 0.3314028482161687,
+      "time_ok": 8.625,
+      "wrong_frac": 0.07078828073295505,
+      "switches": 2.2333333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 9.766666666666667,
+      "idle": 0.802147362580334
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 9.539583333333333,
+      "time_all_se": 0.34057687911233936,
+      "time_ok": 8.5,
+      "wrong_frac": 0.0836280907541788,
+      "switches": 2.3333333333333335,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.5,
+       "gamma": 1.0,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 9.539583333333333,
+      "idle": 1.021175417234229
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 8.664583333333333,
+      "time_all_se": 0.3153892463169022,
+      "time_ok": 8.0,
+      "wrong_frac": 0.09890873785345092,
+      "switches": 2.3,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.5,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 8.664583333333333,
+      "idle": 1.4979767953863825
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 8.066666666666666,
+      "time_all_se": 0.2543000866698609,
+      "time_ok": 7.25,
+      "wrong_frac": 0.10044721280279957,
+      "switches": 2.3,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.7,
+       "theta": 0.4,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1
+      },
+      "time": 8.066666666666666,
+      "idle": 1.8755213472805963
+     }
+    ]
+   },
+   "shared": {
+    "0.05": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 11.058333333333334,
+     "time_all_se": 0.3847711269588863,
+     "time_ok": 9.25,
+     "wrong_frac": 0.012706500142119284,
+     "switches": 0.5633333333333334,
+     "wrong_commits": 0.016666666666666666,
+     "auto_commits": 1.0166666666666666,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 2.0,
+      "vmax": 0.2,
+      "hold": 2,
+      "kappa": 0.3,
+      "tau": 0.8
+     },
+     "time": 11.058333333333334,
+     "idle": 0.13397580672314297
+    },
+    "0.25": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 7.390833333333333,
+     "time_all_se": 0.2305774654581598,
+     "time_ok": 6.375,
+     "wrong_frac": 0.04245781091244177,
+     "switches": 0.7266666666666667,
+     "wrong_commits": 0.02,
+     "auto_commits": 1.02,
+     "params": {
+      "alpha": 0.3,
+      "theta": 0.7,
+      "gamma": 0.5,
+      "vmax": 0.3,
+      "hold": 1,
+      "kappa": 0.6,
+      "tau": 0.97
+     },
+     "time": 7.390833333333333,
+     "idle": 0.30387912096324216
+    },
+    "1.0": {
+     "n": 300,
+     "success": 1.0,
+     "time_all": 6.104166666666667,
+     "time_all_se": 0.1861287027798602,
+     "time_ok": 5.25,
+     "wrong_frac": 0.07675292830736478,
+     "switches": 0.8566666666666667,
+     "wrong_commits": 0.043333333333333335,
+     "auto_commits": 1.0433333333333332,
+     "params": {
+      "alpha": 0.5,
+      "theta": 0.6,
+      "gamma": 0.5,
+      "vmax": 0.4,
+      "hold": 1,
+      "kappa": 0.6,
+      "tau": 0.97
+     },
+     "time": 6.104166666666667,
+     "idle": 0.8734168642600043
+    },
+    "frontier": [
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 10.745833333333334,
+      "time_all_se": 0.5290492050756934,
+      "time_ok": 9.75,
+      "wrong_frac": 0.01076458141531671,
+      "switches": 0.5416666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 1.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 10.745833333333334,
+      "idle": 0.1393392563059459
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 11.25,
+      "time_all_se": 0.6599539496709407,
+      "time_ok": 10.0,
+      "wrong_frac": 0.006125515185297793,
+      "switches": 0.575,
+      "wrong_commits": 0.058333333333333334,
+      "auto_commits": 1.0583333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 11.25,
+      "idle": 0.18742765576652573
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 10.941666666666666,
+      "time_all_se": 0.5885575389520804,
+      "time_ok": 9.75,
+      "wrong_frac": 0.009425734573752476,
+      "switches": 0.55,
+      "wrong_commits": 0.016666666666666666,
+      "auto_commits": 1.0166666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 10.941666666666666,
+      "idle": 0.1874276557665257
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 11.175,
+      "time_all_se": 0.5330432947347004,
+      "time_ok": 10.75,
+      "wrong_frac": 0.011513263288998583,
+      "switches": 0.5916666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 1.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 2.0,
+       "vmax": 0.2,
+       "hold": 2,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 11.175,
+      "idle": 0.1393392563059459
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 7.108333333333333,
+      "time_all_se": 0.3760342103554007,
+      "time_ok": 6.0,
+      "wrong_frac": 0.03242876158418291,
+      "switches": 0.7333333333333333,
+      "wrong_commits": 0.016666666666666666,
+      "auto_commits": 1.0166666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 7.108333333333333,
+      "idle": 0.3938194684446918
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 7.34375,
+      "time_all_se": 0.39382113314163775,
+      "time_ok": 6.25,
+      "wrong_frac": 0.03600241748381639,
+      "switches": 0.7333333333333333,
+      "wrong_commits": 0.008333333333333333,
+      "auto_commits": 1.0083333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 7.34375,
+      "idle": 0.39223809283885813
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 6.8375,
+      "time_all_se": 0.37197248945744,
+      "time_ok": 5.625,
+      "wrong_frac": 0.03117761098121005,
+      "switches": 0.6916666666666667,
+      "wrong_commits": 0.016666666666666666,
+      "auto_commits": 1.0166666666666666,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 6.8375,
+      "idle": 0.4658474904122568
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 6.7375,
+      "time_all_se": 0.40842889609486016,
+      "time_ok": 5.125,
+      "wrong_frac": 0.035502261219172986,
+      "switches": 0.5833333333333334,
+      "wrong_commits": 0.03333333333333333,
+      "auto_commits": 1.0333333333333334,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.3,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 6.7375,
+      "idle": 0.6201829578508893
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 6.025,
+      "time_all_se": 0.35290163760789,
+      "time_ok": 5.0,
+      "wrong_frac": 0.061917090881743825,
+      "switches": 0.8833333333333333,
+      "wrong_commits": 0.05,
+      "auto_commits": 1.05,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.97
+      },
+      "time": 6.025,
+      "idle": 1.139407818276247
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 5.86875,
+      "time_all_se": 0.34576725390434104,
+      "time_ok": 5.0,
+      "wrong_frac": 0.06233966463152347,
+      "switches": 0.8166666666666667,
+      "wrong_commits": 0.05,
+      "auto_commits": 1.05,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 5.86875,
+      "idle": 1.193485828574618
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 5.39375,
+      "time_all_se": 0.27798013608425864,
+      "time_ok": 4.75,
+      "wrong_frac": 0.0490303940340705,
+      "switches": 0.75,
+      "wrong_commits": 0.06666666666666667,
+      "auto_commits": 1.0666666666666667,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.9
+      },
+      "time": 5.39375,
+      "idle": 1.2992086060392025
+     },
+     {
+      "n": 120,
+      "success": 1.0,
+      "time_all": 5.308333333333334,
+      "time_all_se": 0.37702224732322803,
+      "time_ok": 4.5,
+      "wrong_frac": 0.05067659874687524,
+      "switches": 0.6166666666666667,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.1,
+      "params": {
+       "alpha": 0.5,
+       "theta": 0.6,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 1,
+       "kappa": 0.6,
+       "tau": 0.8
+      },
+      "time": 5.308333333333334,
+      "idle": 1.4384149098905834
+     }
+    ]
+   }
+  }
+ },
+ "sensitivity": {
+  "accuracy": 0.65,
+  "budget": 0.25,
+  "variants": {
+   "temperature": {
+    "0.5": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 21.288333333333334,
+      "time_all_se": 0.8666410790406176,
+      "time_ok": 19.125,
+      "wrong_frac": 0.24090334659757098,
+      "switches": 2.6933333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 21.288333333333334,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.9533333333333334,
+      "time_all": 50.875,
+      "time_all_se": 1.4943775125075134,
+      "time_ok": 47.75,
+      "wrong_frac": 0.15818942568027292,
+      "switches": 6.086666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 50.875,
+      "idle": 0.5137500000000002
+     },
+     "proportional": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 27.12,
+      "time_all_se": 1.0845021744758987,
+      "time_ok": 24.875,
+      "wrong_frac": 0.1699137201525841,
+      "switches": 2.62,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 27.12,
+      "idle": 0.6797783087507164
+     },
+     "shared": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 14.568333333333333,
+      "time_all_se": 0.8875849414771873,
+      "time_ok": 11.75,
+      "wrong_frac": 0.12269063274304443,
+      "switches": 0.9333333333333333,
+      "wrong_commits": 0.14,
+      "auto_commits": 1.1466666666666667,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 14.568333333333333,
+      "idle": 0.918188702439968
+     }
+    },
+    "1.0": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 21.288333333333334,
+      "time_all_se": 0.8666410790406176,
+      "time_ok": 19.125,
+      "wrong_frac": 0.24090334659757098,
+      "switches": 2.6933333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 21.288333333333334,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.6666666666666666,
+      "time_all": 72.465,
+      "time_all_se": 1.4478172068426076,
+      "time_ok": 62.25,
+      "wrong_frac": 0.09329592197248125,
+      "switches": 5.066666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 72.465,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.8933333333333333,
+      "time_all": 52.005,
+      "time_all_se": 1.9125811968258764,
+      "time_ok": 47.75,
+      "wrong_frac": 0.09871194782366746,
+      "switches": 2.78,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 52.005,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 24.99,
+      "time_all_se": 1.5357337256382178,
+      "time_ok": 19.0,
+      "wrong_frac": 0.07019936108373076,
+      "switches": 0.8866666666666667,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.0933333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 24.99,
+      "idle": 0.18895537109451008
+     }
+    },
+    "2.0": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 21.288333333333334,
+      "time_all_se": 0.8666410790406176,
+      "time_ok": 19.125,
+      "wrong_frac": 0.24090334659757098,
+      "switches": 2.6933333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 21.288333333333334,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.007407407407407408,
+      "switches": 0.8,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.0,
+      "time_all": 90.0,
+      "time_all_se": 0.0,
+      "time_ok": NaN,
+      "wrong_frac": 0.007222222222222222,
+      "switches": 0.74,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 90.0,
+      "idle": 0.0
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.11333333333333333,
+      "time_all": 85.49833333333333,
+      "time_all_se": 1.2714743698084485,
+      "time_ok": 60.25,
+      "wrong_frac": 0.006666666666666667,
+      "switches": 0.64,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.12,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 85.49833333333333,
+      "idle": 0.0
+     }
+    }
+   },
+   "rho": {
+    "0.5": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 16.763333333333332,
+      "time_all_se": 0.39755816949940753,
+      "time_ok": 16.25,
+      "wrong_frac": 0.2082021766650619,
+      "switches": 3.2333333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 16.763333333333332,
+      "idle": 3.921249999999992
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.4866666666666667,
+      "time_all": 82.35833333333333,
+      "time_all_se": 0.8495044504502757,
+      "time_ok": 76.75,
+      "wrong_frac": 0.01753231186911861,
+      "switches": 4.486666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 82.35833333333333,
+      "idle": 0.008750000000000006
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.5666666666666667,
+      "time_all": 78.51666666666667,
+      "time_all_se": 1.2015548899724489,
+      "time_ok": 72.25,
+      "wrong_frac": 0.010978638533093445,
+      "switches": 3.066666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 78.51666666666667,
+      "idle": 0.0006325106000639625
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 33.611666666666665,
+      "time_all_se": 1.522781028872539,
+      "time_ok": 30.5,
+      "wrong_frac": 0.008299182299182297,
+      "switches": 0.82,
+      "wrong_commits": 0.0,
+      "auto_commits": 1.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 33.611666666666665,
+      "idle": 0.0006325106000639625
+     }
+    },
+    "0.85": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 21.288333333333334,
+      "time_all_se": 0.8666410790406176,
+      "time_ok": 19.125,
+      "wrong_frac": 0.24090334659757098,
+      "switches": 2.6933333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 21.288333333333334,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.6666666666666666,
+      "time_all": 72.465,
+      "time_all_se": 1.4478172068426076,
+      "time_ok": 62.25,
+      "wrong_frac": 0.09329592197248125,
+      "switches": 5.066666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 72.465,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.8933333333333333,
+      "time_all": 52.005,
+      "time_all_se": 1.9125811968258764,
+      "time_ok": 47.75,
+      "wrong_frac": 0.09871194782366746,
+      "switches": 2.78,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 52.005,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 24.99,
+      "time_all_se": 1.5357337256382178,
+      "time_ok": 19.0,
+      "wrong_frac": 0.07019936108373076,
+      "switches": 0.8866666666666667,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.0933333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 24.99,
+      "idle": 0.18895537109451008
+     }
+    },
+    "0.95": {
+     "direct": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 23.846666666666668,
+      "time_all_se": 1.2322470577505245,
+      "time_ok": 19.75,
+      "wrong_frac": 0.21954173750144976,
+      "switches": 2.4,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 23.846666666666668,
+      "idle": 2.657499999999995
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.37333333333333335,
+      "time_all": 78.88166666666666,
+      "time_all_se": 1.5105384773067883,
+      "time_ok": 65.75,
+      "wrong_frac": 0.17585957428816248,
+      "switches": 4.28,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 78.88166666666666,
+      "idle": 0.23374999999999996
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.7066666666666667,
+      "time_all": 60.446666666666665,
+      "time_all_se": 2.2438875295654412,
+      "time_ok": 47.25,
+      "wrong_frac": 0.15948103993544022,
+      "switches": 2.7333333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 60.446666666666665,
+      "idle": 0.2900493904454301
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.94,
+      "time_all": 29.605,
+      "time_all_se": 2.1385435231594956,
+      "time_ok": 16.5,
+      "wrong_frac": 0.09654116246000527,
+      "switches": 0.8733333333333333,
+      "wrong_commits": 0.13333333333333333,
+      "auto_commits": 1.08,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 29.605,
+      "idle": 0.4581597916369852
+     }
+    }
+   },
+   "delay": {
+    "0": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 18.665,
+      "time_all_se": 0.785551253459684,
+      "time_ok": 15.75,
+      "wrong_frac": 0.22035427990157197,
+      "switches": 2.16,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 18.665,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.8866666666666667,
+      "time_all": 60.336666666666666,
+      "time_all_se": 1.6020313354306512,
+      "time_ok": 56.25,
+      "wrong_frac": 0.06553583265678259,
+      "switches": 2.6666666666666665,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 60.336666666666666,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.94,
+      "time_all": 47.18666666666667,
+      "time_all_se": 1.880069115933256,
+      "time_ok": 43.5,
+      "wrong_frac": 0.08264169717352284,
+      "switches": 2.3933333333333335,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 47.18666666666667,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 22.663333333333334,
+      "time_all_se": 1.3745834973549613,
+      "time_ok": 16.625,
+      "wrong_frac": 0.06417059960552138,
+      "switches": 0.8533333333333334,
+      "wrong_commits": 0.08,
+      "auto_commits": 1.08,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 22.663333333333334,
+      "idle": 0.18895537109451008
+     }
+    },
+    "2": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 21.288333333333334,
+      "time_all_se": 0.8666410790406176,
+      "time_ok": 19.125,
+      "wrong_frac": 0.24090334659757098,
+      "switches": 2.6933333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 21.288333333333334,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.6666666666666666,
+      "time_all": 72.465,
+      "time_all_se": 1.4478172068426076,
+      "time_ok": 62.25,
+      "wrong_frac": 0.09329592197248125,
+      "switches": 5.066666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 72.465,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.8933333333333333,
+      "time_all": 52.005,
+      "time_all_se": 1.9125811968258764,
+      "time_ok": 47.75,
+      "wrong_frac": 0.09871194782366746,
+      "switches": 2.78,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 52.005,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 24.99,
+      "time_all_se": 1.5357337256382178,
+      "time_ok": 19.0,
+      "wrong_frac": 0.07019936108373076,
+      "switches": 0.8866666666666667,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.0933333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 24.99,
+      "idle": 0.18895537109451008
+     }
+    },
+    "4": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 23.881666666666668,
+      "time_all_se": 0.9641002826257161,
+      "time_ok": 21.875,
+      "wrong_frac": 0.25466288155406125,
+      "switches": 3.36,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 23.881666666666668,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.5333333333333333,
+      "time_all": 77.57,
+      "time_all_se": 1.3460774897832288,
+      "time_ok": 68.625,
+      "wrong_frac": 0.10184433906598528,
+      "switches": 6.1466666666666665,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 77.57,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.78,
+      "time_all": 59.285,
+      "time_all_se": 1.9736590752746208,
+      "time_ok": 50.75,
+      "wrong_frac": 0.1171161020119699,
+      "switches": 3.7,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 59.285,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9866666666666667,
+      "time_all": 25.13,
+      "time_all_se": 1.497383474829849,
+      "time_ok": 20.125,
+      "wrong_frac": 0.07421055272673316,
+      "switches": 1.02,
+      "wrong_commits": 0.09333333333333334,
+      "auto_commits": 1.08,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 25.13,
+      "idle": 0.18895537109451008
+     }
+    }
+   },
+   "jaw_hit": {
+    "0.7": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 22.081666666666667,
+      "time_all_se": 0.8891355700308637,
+      "time_ok": 20.0,
+      "wrong_frac": 0.24543633371521498,
+      "switches": 2.54,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 22.081666666666667,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.6666666666666666,
+      "time_all": 72.51833333333333,
+      "time_all_se": 1.4196982236497144,
+      "time_ok": 63.375,
+      "wrong_frac": 0.09241441815143875,
+      "switches": 4.56,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 72.51833333333333,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.8866666666666667,
+      "time_all": 55.36,
+      "time_all_se": 1.806236833552409,
+      "time_ok": 52.25,
+      "wrong_frac": 0.10922391180766536,
+      "switches": 2.7733333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 55.36,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 26.405,
+      "time_all_se": 1.519247631852813,
+      "time_ok": 21.25,
+      "wrong_frac": 0.08334714642848928,
+      "switches": 0.8933333333333333,
+      "wrong_commits": 0.12,
+      "auto_commits": 1.1133333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 26.405,
+      "idle": 0.18895537109451008
+     }
+    },
+    "0.9": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 21.288333333333334,
+      "time_all_se": 0.8666410790406176,
+      "time_ok": 19.125,
+      "wrong_frac": 0.24090334659757098,
+      "switches": 2.6933333333333334,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 21.288333333333334,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.6666666666666666,
+      "time_all": 72.465,
+      "time_all_se": 1.4478172068426076,
+      "time_ok": 62.25,
+      "wrong_frac": 0.09329592197248125,
+      "switches": 5.066666666666666,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 72.465,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.8933333333333333,
+      "time_all": 52.005,
+      "time_all_se": 1.9125811968258764,
+      "time_ok": 47.75,
+      "wrong_frac": 0.09871194782366746,
+      "switches": 2.78,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 52.005,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 24.99,
+      "time_all_se": 1.5357337256382178,
+      "time_ok": 19.0,
+      "wrong_frac": 0.07019936108373076,
+      "switches": 0.8866666666666667,
+      "wrong_commits": 0.1,
+      "auto_commits": 1.0933333333333333,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 24.99,
+      "idle": 0.18895537109451008
+     }
+    },
+    "0.98": {
+     "direct": {
+      "n": 150,
+      "success": 1.0,
+      "time_all": 19.7,
+      "time_all_se": 0.7728437565483687,
+      "time_ok": 17.25,
+      "wrong_frac": 0.22842992258808342,
+      "switches": 2.6333333333333333,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {},
+      "time": 19.7,
+      "idle": 3.4199999999999933
+     },
+     "evidence": {
+      "n": 150,
+      "success": 0.66,
+      "time_all": 73.71666666666667,
+      "time_all_se": 1.4167554913593219,
+      "time_ok": 66.0,
+      "wrong_frac": 0.09600928191092031,
+      "switches": 5.22,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "hold": 1,
+       "refractory": 1
+      },
+      "time": 73.71666666666667,
+      "idle": 0.13875000000000004
+     },
+     "proportional": {
+      "n": 150,
+      "success": 0.9066666666666666,
+      "time_all": 50.52166666666667,
+      "time_all_se": 1.892851170014958,
+      "time_ok": 47.375,
+      "wrong_frac": 0.0918411755101449,
+      "switches": 2.9066666666666667,
+      "wrong_commits": 0.0,
+      "auto_commits": 0.0,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2
+      },
+      "time": 50.52166666666667,
+      "idle": 0.13936627482960912
+     },
+     "shared": {
+      "n": 150,
+      "success": 0.9933333333333333,
+      "time_all": 24.011666666666667,
+      "time_all_se": 1.4843541531759554,
+      "time_ok": 17.25,
+      "wrong_frac": 0.06525354976524393,
+      "switches": 0.8933333333333333,
+      "wrong_commits": 0.09333333333333334,
+      "auto_commits": 1.0866666666666667,
+      "params": {
+       "alpha": 0.3,
+       "theta": 0.7,
+       "gamma": 0.5,
+       "vmax": 0.4,
+       "hold": 2,
+       "kappa": 0.3,
+       "tau": 0.8
+      },
+      "time": 24.011666666666667,
+      "idle": 0.18895537109451008
+     }
+    }
+   }
+  }
+ },
+ "tuned": {
+  "0.45": {
+   "evidence": {
+    "0.05": {
+     "alpha": 0.8,
+     "theta": 0.7,
+     "hold": 1,
+     "refractory": 0
+    },
+    "0.25": {
+     "alpha": 0.8,
+     "theta": 0.7,
+     "hold": 1,
+     "refractory": 0
+    },
+    "1.0": {
+     "alpha": 0.8,
+     "theta": 0.7,
+     "hold": 1,
+     "refractory": 0
+    }
+   },
+   "proportional": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 1
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 1
+    },
+    "1.0": {
+     "alpha": 0.7,
+     "theta": 0.4,
+     "gamma": 1.0,
+     "vmax": 0.4,
+     "hold": 2
+    }
+   },
+   "shared": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 1,
+     "kappa": 0.15,
+     "tau": 0.8
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 1,
+     "kappa": 0.15,
+     "tau": 0.8
+    },
+    "1.0": {
+     "alpha": 0.7,
+     "theta": 0.4,
+     "gamma": 1.0,
+     "vmax": 0.4,
+     "hold": 2,
+     "kappa": 0.3,
+     "tau": 0.8
+    }
+   }
+  },
+  "0.55": {
+   "evidence": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 3,
+     "refractory": 2
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 1,
+     "refractory": 0
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.6,
+     "hold": 1,
+     "refractory": 0
+    }
+   },
+   "proportional": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 1
+    },
+    "0.25": {
+     "alpha": 0.7,
+     "theta": 0.7,
+     "gamma": 0.5,
+     "vmax": 0.3,
+     "hold": 1
+    },
+    "1.0": {
+     "alpha": 0.7,
+     "theta": 0.6,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 1
+    }
+   },
+   "shared": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 1,
+     "kappa": 0.6,
+     "tau": 0.8
+    },
+    "0.25": {
+     "alpha": 0.7,
+     "theta": 0.7,
+     "gamma": 0.5,
+     "vmax": 0.3,
+     "hold": 1,
+     "kappa": 0.3,
+     "tau": 0.8
+    },
+    "1.0": {
+     "alpha": 0.7,
+     "theta": 0.6,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 1,
+     "kappa": 0.6,
+     "tau": 0.97
+    }
+   }
+  },
+  "0.65": {
+   "evidence": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 3,
+     "refractory": 3
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 1,
+     "refractory": 1
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.6,
+     "hold": 1,
+     "refractory": 0
+    }
+   },
+   "proportional": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.4,
+     "hold": 2
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 2
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "gamma": 0.5,
+     "vmax": 0.2,
+     "hold": 2
+    }
+   },
+   "shared": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.4,
+     "hold": 2,
+     "kappa": 0.3,
+     "tau": 0.8
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 2,
+     "kappa": 0.3,
+     "tau": 0.8
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "gamma": 0.5,
+     "vmax": 0.2,
+     "hold": 2,
+     "kappa": 0.15,
+     "tau": 0.8
+    }
+   }
+  },
+  "0.75": {
+   "evidence": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 3,
+     "refractory": 2
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 2,
+     "refractory": 0
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.6,
+     "hold": 1,
+     "refractory": 0
+    }
+   },
+   "proportional": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 2
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 1.0,
+     "vmax": 0.4,
+     "hold": 2
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.6,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 1
+    }
+   },
+   "shared": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 2,
+     "kappa": 0.3,
+     "tau": 0.8
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 1.0,
+     "vmax": 0.4,
+     "hold": 2,
+     "kappa": 0.3,
+     "tau": 0.9
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.6,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 1,
+     "kappa": 0.3,
+     "tau": 0.9
+    }
+   }
+  },
+  "0.85": {
+   "evidence": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "hold": 3,
+     "refractory": 2
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.6,
+     "hold": 2,
+     "refractory": 0
+    },
+    "1.0": {
+     "alpha": 0.3,
+     "theta": 0.5,
+     "hold": 1,
+     "refractory": 0
+    }
+   },
+   "proportional": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 2
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 0.5,
+     "vmax": 0.3,
+     "hold": 1
+    },
+    "1.0": {
+     "alpha": 0.5,
+     "theta": 0.6,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 1
+    }
+   },
+   "shared": {
+    "0.05": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 2.0,
+     "vmax": 0.2,
+     "hold": 2,
+     "kappa": 0.3,
+     "tau": 0.8
+    },
+    "0.25": {
+     "alpha": 0.3,
+     "theta": 0.7,
+     "gamma": 0.5,
+     "vmax": 0.3,
+     "hold": 1,
+     "kappa": 0.6,
+     "tau": 0.97
+    },
+    "1.0": {
+     "alpha": 0.5,
+     "theta": 0.6,
+     "gamma": 0.5,
+     "vmax": 0.4,
+     "hold": 1,
+     "kappa": 0.6,
+     "tau": 0.97
+    }
+   }
+  }
+ }
+}
