@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></head><body>
+<title>BCI Control Simulator</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a lab-instrument console. Stage (3D arm or cursor field) on the left, decoder readout, input and settings on the right; stacked on a phone.
+   Colour: cool neutrals, one blue for the device and decoder, one orange reserved for the goal.
+   Type: IBM Plex Sans for labels, IBM Plex Mono for every number a decoder would print. */
+:root {
+  --bg: #f2f4f6; --surface: #ffffff; --surface-2: #e8ebef; --ink: #13171b; --ink-2: #47525d; --ink-3: #66717c;
+  --line: #d3d9df; --accent: #2a78d6; --accent-strong: #1d62b8; --on-accent: #ffffff; --goal: #d9531f; --good: #0a7d0a;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1215; --surface: #151a1f; --surface-2: #1c232a; --ink: #e7eaee; --ink-2: #a2acb6; --ink-3: #8a95a0;
+    --line: #29313a; --accent: #4a93ee; --accent-strong: #2f7fe0; --on-accent: #0b1117; --goal: #f27a45; --good: #3fbf3f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1215; --surface: #151a1f; --surface-2: #1c232a; --ink: #e7eaee; --ink-2: #a2acb6; --ink-3: #8a95a0;
+  --line: #29313a; --accent: #4a93ee; --accent-strong: #2f7fe0; --on-accent: #0b1117; --goal: #f27a45; --good: #3fbf3f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 14px; line-height: 1.45;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px 28px; }
+.app { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+h1 { font-size: 20px; line-height: 1.2; font-weight: 600; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.sub { margin: 2px 0 0; color: var(--ink-2); max-width: 62ch; }
+.top { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: flex-end; justify-content: space-between; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 2px; gap: 2px; max-width: 100%; }
+.field .seg { display: flex; width: 100%; }
+.field .seg button { flex: 1; }
+.seg button { font: inherit; font-weight: 500; color: var(--ink-2); background: transparent; border: 0; border-radius: 6px; padding: 7px 14px; cursor: pointer; min-height: 36px; }
+.seg button[aria-pressed="true"], .seg button[aria-selected="true"] { background: var(--accent-strong); color: var(--on-accent); }
+.seg button:focus-visible, .btn:focus-visible, select:focus-visible, input:focus-visible, .pad:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+@media (min-width: 960px) { .layout { grid-template-columns: minmax(0, 1fr) 372px; align-items: start; } }
+.stage { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.view { position: relative; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; max-height: 72vh; width: 100%; touch-action: none; }
+@media (max-width: 559px) { .view { aspect-ratio: 1 / 1; max-height: 64vh; } }
+@media (min-width: 960px) { .view { aspect-ratio: auto; height: min(68vh, 600px); } }
+.view canvas { display: block; width: 100%; height: 100%; }
+.chips { position: absolute; left: 10px; top: 10px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; max-width: calc(100% - 20px); }
+.chip { font-family: var(--font-num); font-size: 12px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; display: inline-flex; gap: 6px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--goal); display: inline-block; }
+.hint { position: absolute; left: 10px; bottom: 8px; font-size: 12px; color: var(--ink-3); pointer-events: none; }
+.banner { position: absolute; right: 10px; top: 10px; font-weight: 600; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; pointer-events: none; }
+.banner[data-kind="hit"] { color: var(--good); }
+.banner[data-kind="miss"] { color: var(--goal); }
+.nogl { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--ink-2); }
+.panel { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card h2 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin: 0; }
+.bars { display: grid; gap: 6px; }
+.bar { display: grid; grid-template-columns: 44px minmax(0, 1fr) 46px; gap: 8px; align-items: center; font-size: 13px; }
+.bar .track { height: 12px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+.bar .fill { height: 100%; width: 0; background: var(--ink-3); opacity: 0.55; border-radius: 3px; transition: width 90ms linear; }
+.bar[data-on="true"] .fill { background: var(--accent); opacity: 1; }
+.bar .num { font-family: var(--font-num); text-align: right; font-variant-numeric: tabular-nums; }
+.readline { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--ink-2); }
+.readline b { color: var(--ink); font-weight: 500; }
+.lamp { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--line); margin-right: 5px; vertical-align: baseline; }
+.lamp[data-on="true"] { background: var(--accent); }
+.pads { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pads .wide { grid-column: 1 / -1; }
+.pad { font: inherit; font-weight: 500; font-size: 15px; background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 58px; padding: 8px 10px; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.pad small { font-size: 11px; color: var(--ink-3); font-weight: 400; }
+.pad[data-down="true"] { background: var(--accent-strong); color: var(--on-accent); border-color: var(--accent-strong); }
+.pad[data-down="true"] small { color: var(--on-accent); }
+.pad[hidden] { display: none; }
+.field { display: grid; gap: 4px; }
+.field > label, .field > .lab { font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; gap: 8px; }
+.field .val { font-family: var(--font-num); color: var(--ink-2); font-weight: 400; }
+.note { font-size: 12.5px; color: var(--ink-2); margin: 0; }
+input[type="range"] { width: 100%; accent-color: var(--accent-strong); margin: 4px 0; min-height: 28px; }
+select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { font: inherit; font-weight: 500; background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; min-height: 36px; cursor: pointer; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stat { display: grid; gap: 2px; }
+.stat .k { font-size: 11.5px; color: var(--ink-3); }
+.stat .v { font-family: var(--font-num); font-size: 17px; font-variant-numeric: tabular-nums; }
+.foot { font-size: 12.5px; color: var(--ink-3); max-width: 90ch; }
+.foot p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: reduce) { .bar .fill { transition: none; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>BCI Control Simulator</h1>
+      <p class="sub">Drive a 3D arm or a cursor through a model of an EEG decoder, and feel what accuracy, confidence and the interpreter do to control.</p>
+    </div>
+    <div class="seg" role="tablist" aria-label="View">
+      <button id="tab-arm" role="tab" aria-selected="true">3D arm</button>
+      <button id="tab-cursor" role="tab" aria-selected="false">Cursor</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="stage" aria-label="Simulation">
+      <div class="view" id="view-arm">
+        <canvas id="gl" aria-label="3D view of the arm"></canvas>
+        <div class="chips"><span class="chip"><span class="dot"></span>goal</span><span class="chip" id="chip-joint">joint: Base</span><span class="chip" id="chip-time">0.0 s</span></div>
+        <div class="banner" id="banner-arm" hidden></div>
+        <div class="hint">Drag to orbit, scroll or pinch to zoom, double-click to reset</div>
+        <div class="nogl" id="nogl" hidden>The 3D view needs WebGL and three.js from cdnjs. The cursor mode still works.</div>
+      </div>
+      <div class="view" id="view-cursor" hidden>
+        <canvas id="cv" aria-label="Cursor field"></canvas>
+        <div class="chips"><span class="chip"><span class="dot"></span>goal</span><span class="chip" id="chip-axis">axis: horizontal</span><span class="chip" id="chip-time2">0.0 s</span></div>
+        <div class="banner" id="banner-cursor" hidden></div>
+      </div>
+      <div class="card">
+        <h2>Your input</h2>
+        <div class="pads" id="pads">
+          <button class="pad" id="pad-left" aria-label="Imagine left hand"><span>◀ Left hand</span><small>hold · key A or ←</small></button>
+          <button class="pad" id="pad-right" aria-label="Imagine right hand"><span>Right hand ▶</span><small>hold · key D or →</small></button>
+          <button class="pad wide" id="pad-clench" aria-label="Clench jaw to switch"><span id="clench-label">Jaw clench: next joint</span><small>tap · Space or J</small></button>
+        </div>
+        <p class="note" id="input-note">Nothing held means rest. In Watch mode a scripted user plays; press any input to take over.</p>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="Decoder and settings">
+      <div class="card">
+        <h2>Decoder output</h2>
+        <div class="bars" id="bars">
+          <div class="bar" data-c="0"><span>rest</span><div class="track"><div class="fill"></div></div><span class="num">0.00</span></div>
+          <div class="bar" data-c="1"><span>left</span><div class="track"><div class="fill"></div></div><span class="num">0.00</span></div>
+          <div class="bar" data-c="2"><span>right</span><div class="track"><div class="fill"></div></div><span class="num">0.00</span></div>
+        </div>
+        <div class="readline"><span>You: <b id="rd-intent">rest</b></span><span><i class="lamp" id="lamp-jaw"></i>jaw clench</span><span>Move: <b id="rd-move">hold</b></span></div>
+      </div>
+
+      <div class="card">
+        <h2>Settings</h2>
+        <div class="field"><span class="lab">Who plays</span>
+          <div class="seg" id="seg-mode"><button data-v="watch" aria-pressed="true">Watch</button><button data-v="play" aria-pressed="false">You play</button></div></div>
+        <div class="field"><label for="acc">Decoder accuracy <span class="val" id="acc-val">65%</span></label>
+          <input type="range" id="acc" min="40" max="99" step="1" value="65">
+          <p class="note">Share of decoder windows that name the right class (rest, left, right).</p></div>
+        <div class="field"><label for="interp">Interpreter</label>
+          <select id="interp">
+            <option value="direct">Argmax: move on every window</option>
+            <option value="evidence">Evidence and hold: fixed steps</option>
+            <option value="proportional" selected>Proportional: speed follows confidence</option>
+            <option value="shared">Shared autonomy: finishes the reach</option>
+          </select>
+          <p class="note" id="interp-note"></p></div>
+        <div class="field" id="f-budget"><span class="lab">Strictness <span class="val" id="budget-val"></span></span>
+          <div class="seg" id="seg-budget"><button data-v="0.05" aria-pressed="false">Strict</button><button data-v="0.25" aria-pressed="true">Balanced</button><button data-v="1.0" aria-pressed="false">Loose</button></div>
+          <p class="note">How much false motion at rest the settings allow. Stricter means slower.</p></div>
+        <div class="field"><span class="lab">Decoder confidence</span>
+          <div class="seg" id="seg-calib"><button data-v="0.5" aria-pressed="false">Over</button><button data-v="1" aria-pressed="true">Calibrated</button><button data-v="2" aria-pressed="false">Under</button></div>
+          <p class="note">Interpreter settings are tuned for calibrated output. Try the other two.</p></div>
+        <div class="field" id="f-axes" hidden><span class="lab">Cursor axes</span>
+          <div class="seg" id="seg-axes"><button data-v="1" aria-pressed="false">Left and right</button><button data-v="2" aria-pressed="true">Plus up and down</button></div></div>
+        <div class="field" id="f-speed"><span class="lab">Watch speed</span>
+          <div class="seg" id="seg-speed"><button data-v="1" aria-pressed="true">1×</button><button data-v="2" aria-pressed="false">2×</button><button data-v="4" aria-pressed="false">4×</button></div></div>
+        <div class="row"><button class="btn" id="btn-skip">Skip target</button><button class="btn" id="btn-reset">Reset stats</button></div>
+      </div>
+
+      <div class="card">
+        <h2>This run</h2>
+        <div class="stats">
+          <div class="stat"><span class="k">Reached</span><span class="v" id="st-hits">0 of 0</span></div>
+          <div class="stat"><span class="k">Average time</span><span class="v" id="st-time">–</span></div>
+          <div class="stat"><span class="k">Wander at rest</span><span class="v" id="st-rest">–</span></div>
+        </div>
+        <p class="note" id="st-note">Wander at rest counts arm or cursor motion while you imagine nothing, in standard steps per minute.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <p>This is a simulation. The decoder is a statistical model at the accuracy you choose, with outputs that stay correlated from one window to the next and a jaw-clench detector that is right 90% of the time. It is not your EEG. The arm geometry is a placeholder.</p>
+    <p>The interpreters and their strictness settings are the ones tuned in the Python simulator (<code>sim/</code>) for the nearest of 45, 55, 65, 75 and 85% accuracy. One decoder window every 0.25 s; you see the arm half a second late when the script plays.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+'use strict';
+const SIGNAL = {"35": 0.05402, "36": 0.08762, "37": 0.12255, "38": 0.15807, "39": 0.19223, "40": 0.22586, "41": 0.25854, "42": 0.29248, "43": 0.32489, "44": 0.35811, "45": 0.39049, "46": 0.4238, "47": 0.45507, "48": 0.4866, "49": 0.51924, "50": 0.55175, "51": 0.58541, "52": 0.61893, "53": 0.65078, "54": 0.68402, "55": 0.71637, "56": 0.7491, "57": 0.7815, "58": 0.81465, "59": 0.8485, "60": 0.88193, "61": 0.91601, "62": 0.95025, "63": 0.9849, "64": 1.02107, "65": 1.05699, "66": 1.09182, "67": 1.1286, "68": 1.16611, "69": 1.20322, "70": 1.24009, "71": 1.27742, "72": 1.31546, "73": 1.35518, "74": 1.39594, "75": 1.43665, "76": 1.4778, "77": 1.52148, "78": 1.56408, "79": 1.6074, "80": 1.65563, "81": 1.70257, "82": 1.75217, "83": 1.80294, "84": 1.85493, "85": 1.90953, "86": 1.96669, "87": 2.02723, "88": 2.092, "89": 2.16289, "90": 2.23286, "91": 2.31338, "92": 2.39837, "93": 2.49222, "94": 2.59562, "95": 2.71364, "96": 2.85504, "97": 3.027, "98": 3.26135, "99": 3.62394};
+const TUNED = {"45": {"evidence": {"0.05": {"alpha": 0.8, "theta": 0.7, "hold": 1, "refractory": 0}, "0.25": {"alpha": 0.8, "theta": 0.7, "hold": 1, "refractory": 0}, "1.0": {"alpha": 0.8, "theta": 0.7, "hold": 1, "refractory": 0}}, "proportional": {"0.05": {"alpha": 0.3, "theta": 0.5, "gamma": 2.0, "vmax": 0.2, "hold": 1}, "0.25": {"alpha": 0.3, "theta": 0.5, "gamma": 2.0, "vmax": 0.2, "hold": 1}, "1.0": {"alpha": 0.7, "theta": 0.4, "gamma": 1.0, "vmax": 0.4, "hold": 2}}, "shared": {"0.05": {"alpha": 0.3, "theta": 0.5, "gamma": 2.0, "vmax": 0.2, "hold": 1, "kappa": 0.15, "tau": 0.8}, "0.25": {"alpha": 0.3, "theta": 0.5, "gamma": 2.0, "vmax": 0.2, "hold": 1, "kappa": 0.15, "tau": 0.8}, "1.0": {"alpha": 0.7, "theta": 0.4, "gamma": 1.0, "vmax": 0.4, "hold": 2, "kappa": 0.3, "tau": 0.8}}}, "55": {"evidence": {"0.05": {"alpha": 0.3, "theta": 0.7, "hold": 3, "refractory": 2}, "0.25": {"alpha": 0.3, "theta": 0.7, "hold": 1, "refractory": 0}, "1.0": {"alpha": 0.3, "theta": 0.6, "hold": 1, "refractory": 0}}, "proportional": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.2, "hold": 1}, "0.25": {"alpha": 0.7, "theta": 0.7, "gamma": 0.5, "vmax": 0.3, "hold": 1}, "1.0": {"alpha": 0.7, "theta": 0.6, "gamma": 0.5, "vmax": 0.4, "hold": 1}}, "shared": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.2, "hold": 1, "kappa": 0.6, "tau": 0.8}, "0.25": {"alpha": 0.7, "theta": 0.7, "gamma": 0.5, "vmax": 0.3, "hold": 1, "kappa": 0.3, "tau": 0.8}, "1.0": {"alpha": 0.7, "theta": 0.6, "gamma": 0.5, "vmax": 0.4, "hold": 1, "kappa": 0.6, "tau": 0.97}}}, "65": {"evidence": {"0.05": {"alpha": 0.3, "theta": 0.7, "hold": 3, "refractory": 3}, "0.25": {"alpha": 0.3, "theta": 0.7, "hold": 1, "refractory": 1}, "1.0": {"alpha": 0.3, "theta": 0.6, "hold": 1, "refractory": 0}}, "proportional": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.4, "hold": 2}, "0.25": {"alpha": 0.3, "theta": 0.7, "gamma": 0.5, "vmax": 0.4, "hold": 2}, "1.0": {"alpha": 0.3, "theta": 0.5, "gamma": 0.5, "vmax": 0.2, "hold": 2}}, "shared": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.4, "hold": 2, "kappa": 0.3, "tau": 0.8}, "0.25": {"alpha": 0.3, "theta": 0.7, "gamma": 0.5, "vmax": 0.4, "hold": 2, "kappa": 0.3, "tau": 0.8}, "1.0": {"alpha": 0.3, "theta": 0.5, "gamma": 0.5, "vmax": 0.2, "hold": 2, "kappa": 0.15, "tau": 0.8}}}, "75": {"evidence": {"0.05": {"alpha": 0.3, "theta": 0.7, "hold": 3, "refractory": 2}, "0.25": {"alpha": 0.3, "theta": 0.7, "hold": 2, "refractory": 0}, "1.0": {"alpha": 0.3, "theta": 0.6, "hold": 1, "refractory": 0}}, "proportional": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.2, "hold": 2}, "0.25": {"alpha": 0.3, "theta": 0.7, "gamma": 1.0, "vmax": 0.4, "hold": 2}, "1.0": {"alpha": 0.3, "theta": 0.6, "gamma": 0.5, "vmax": 0.4, "hold": 1}}, "shared": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.2, "hold": 2, "kappa": 0.3, "tau": 0.8}, "0.25": {"alpha": 0.3, "theta": 0.7, "gamma": 1.0, "vmax": 0.4, "hold": 2, "kappa": 0.3, "tau": 0.9}, "1.0": {"alpha": 0.3, "theta": 0.6, "gamma": 0.5, "vmax": 0.4, "hold": 1, "kappa": 0.3, "tau": 0.9}}}, "85": {"evidence": {"0.05": {"alpha": 0.3, "theta": 0.7, "hold": 3, "refractory": 2}, "0.25": {"alpha": 0.3, "theta": 0.6, "hold": 2, "refractory": 0}, "1.0": {"alpha": 0.3, "theta": 0.5, "hold": 1, "refractory": 0}}, "proportional": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.2, "hold": 2}, "0.25": {"alpha": 0.3, "theta": 0.7, "gamma": 0.5, "vmax": 0.3, "hold": 1}, "1.0": {"alpha": 0.5, "theta": 0.6, "gamma": 0.5, "vmax": 0.4, "hold": 1}}, "shared": {"0.05": {"alpha": 0.3, "theta": 0.7, "gamma": 2.0, "vmax": 0.2, "hold": 2, "kappa": 0.3, "tau": 0.8}, "0.25": {"alpha": 0.3, "theta": 0.7, "gamma": 0.5, "vmax": 0.3, "hold": 1, "kappa": 0.6, "tau": 0.97}, "1.0": {"alpha": 0.5, "theta": 0.6, "gamma": 0.5, "vmax": 0.4, "hold": 1, "kappa": 0.6, "tau": 0.97}}}};
+
+// ======================================================================= core (port of sim/armsim)
+const REST = 0, LEFT = 1, RIGHT = 2, SWITCH = 3;
+const BASE_CFG = { dt: 0.25, dwell: 2, step: 0.05, maxDq: 0.10, delay: 2, anticipate: true, switchRefr: 2,
+  jawHit: 0.9, jawFalsePerMin: 0.3, rho: 0.85, limit: 1.0, tol: 0.06, tMax: 90 };
+const ARM_TARGETS = [[0.6, -0.4, 0.3], [-0.5, 0.5, 0.6], [0.3, 0.7, -0.5], [-0.6, -0.5, -0.3]];
+const CURSOR_TARGETS = { 1: [[-0.75], [-0.35], [0.35], [0.75]], 2: [[-0.6, 0.5], [0.6, 0.5], [0.6, -0.5], [-0.6, -0.5]] };
+const CLASS_NAME = ['rest', 'left', 'right', 'jaw clench'];
+
+const clip = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+const argmax = (a) => { let k = 0; for (let i = 1; i < a.length; i++) if (a[i] > a[k]) k = i; return k; };
+const sign = (c) => (c === LEFT ? -1 : 1);
+
+function makeRng(seed) {
+  let a = seed >>> 0, spare = null;
+  const next = () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  next.normal = () => {
+    if (spare !== null) { const s = spare; spare = null; return s; }
+    let u = 0; while (u === 0) u = next();
+    const v = next(), m = Math.sqrt(-2 * Math.log(u));
+    spare = m * Math.sin(2 * Math.PI * v); return m * Math.cos(2 * Math.PI * v);
+  };
+  return next;
+}
+const signalFor = (accPct) => SIGNAL[String(clip(Math.round(accPct), 35, 99))];
+
+class Decoder {
+  constructor(cfg, accPct, temperature, rand) {
+    this.cfg = cfg; this.rand = rand; this.T = temperature; this.s = signalFor(accPct);
+    this.z = [rand.normal(), rand.normal(), rand.normal()];
+  }
+  step(intent) {
+    const { rho, dt, jawHit, jawFalsePerMin } = this.cfg, r = this.rand, k = Math.sqrt(1 - rho * rho);
+    this.z = this.z.map((v) => rho * v + k * r.normal());
+    const logit = this.z.slice();
+    logit[intent === SWITCH ? REST : intent] += this.s;
+    const x = logit.map((v) => (this.s * v) / this.T), m = Math.max(...x), e = x.map((v) => Math.exp(v - m)), tot = e[0] + e[1] + e[2];
+    const jaw = (intent === SWITCH && r() < jawHit) || r() < (jawFalsePerMin * dt) / 60;
+    return { probs: e.map((v) => v / tot), jaw };
+  }
+}
+
+class User {
+  constructor(cfg, goal, goalIdx) { this.cfg = cfg; this.goal = goal; this.goalIdx = goalIdx; this.hist = []; this.wait = 0; }
+  observe(q, j) {
+    const n = this.cfg.delay + 1;
+    if (!this.hist.length) for (let i = 0; i < n; i++) this.hist.push([q.slice(), j]);
+    else { this.hist.push([q.slice(), j]); if (this.hist.length > n) this.hist.shift(); }
+  }
+  intent(autoTarget) {
+    const cfg = this.cfg;
+    if (autoTarget !== null && autoTarget === this.goalIdx) return REST;
+    if (this.wait > 0) { this.wait--; return REST; }
+    const [qOld, jObs] = this.hist[0], qNext = (this.hist.length > 1 ? this.hist[1] : this.hist[0])[0];
+    const q = cfg.anticipate ? qOld.map((v, i) => v + cfg.delay * (qNext[i] - v)) : qOld;
+    const err = this.goal.map((g, i) => g - q[i]), far = err.map((e) => Math.abs(e) > cfg.tol);
+    if (!far.some(Boolean)) return REST;
+    if (far[jObs]) return err[jObs] < 0 ? LEFT : RIGHT;
+    this.wait = cfg.delay;
+    return SWITCH;
+  }
+}
+
+class Task {
+  constructor(cfg, n, targets, goalIdx, decoder, forced = null) {
+    this.cfg = cfg; this.n = n; this.targets = targets; this.goalIdx = goalIdx; this.goal = targets[goalIdx]; this.decoder = decoder;
+    this.forced = forced; this.q = new Array(n).fill(0); this.j = 0; this.t = 0;
+    this.user = new User(cfg, this.goal, goalIdx); this.autoTarget = null; this.inTol = 0; this.done = false; this.success = false;
+    this.nSteps = Math.round(cfg.tMax / cfg.dt); this.lastIntent = REST;
+    this.stats = { moved: 0, wrong: 0, switches: 0, autoCommits: 0, wrongCommits: 0 };
+  }
+  sense(humanIntent = null) {
+    this.user.observe(this.q, this.j);
+    const scripted = this.user.intent(this.autoTarget);
+    const intent = this.forced !== null ? this.forced : (humanIntent !== null ? humanIntent : scripted);
+    this.lastIntent = intent;
+    const { probs, jaw } = this.decoder.step(intent);
+    return { probs, jaw, obs: { q: this.q.slice(), j: this.j, t: this.t } };
+  }
+  act(a) {
+    const cfg = this.cfg, s = this.stats;
+    if (a.autoTarget != null && this.autoTarget === null) { s.autoCommits++; if (a.autoTarget !== this.goalIdx) s.wrongCommits++; }
+    if (a.auto) {
+      this.q = this.q.map((v, i) => clip(v + clip(a.auto[i], -cfg.maxDq, cfg.maxDq), -cfg.limit, cfg.limit));
+    } else if (a.switch) {
+      this.j = (this.j + 1) % this.n; s.switches++;
+    } else if (a.dq) {
+      const old = Math.abs(this.goal[this.j] - this.q[this.j]);
+      this.q[this.j] = clip(this.q[this.j] + clip(a.dq, -cfg.maxDq, cfg.maxDq), -cfg.limit, cfg.limit);
+      s.moved++; if (Math.abs(this.goal[this.j] - this.q[this.j]) > old + 1e-9) s.wrong++;
+    }
+    this.autoTarget = a.autoTarget != null ? a.autoTarget : null;
+    this.t++;
+    this.inTol = this.goal.every((g, i) => Math.abs(g - this.q[i]) <= cfg.tol) ? this.inTol + 1 : 0;
+    if (this.inTol >= cfg.dwell) { this.done = this.success = true; } else if (this.t >= this.nSteps) this.done = true;
+    return this.done;
+  }
+}
+
+class Controller {
+  constructor(cfg, params) { this.cfg = cfg; this.p = Object.assign({}, this.constructor.defaults, params); this.reset(); }
+  reset() { this.lastSwitch = -1e9; this.pt = null; }
+  smooth(probs) { const a = this.p.alpha === undefined ? 1 : this.p.alpha; this.pt = this.pt ? this.pt.map((v, i) => (1 - a) * v + a * probs[i]) : probs.slice(); return this.pt; }
+  step(probs, jaw, obs) {
+    if (jaw && obs.t - this.lastSwitch >= this.cfg.switchRefr) { this.lastSwitch = obs.t; this.onSwitch(); return { switch: true }; }
+    return this.move(probs, obs);
+  }
+  onSwitch() {}
+}
+class DirectArgmax extends Controller {
+  move(probs) { const c = argmax(probs); return c === REST ? {} : { dq: sign(c) * this.cfg.step }; }
+}
+class Evidence extends Controller {
+  reset() { super.reset(); this.cls = null; this.count = 0; this.cool = 0; }
+  onSwitch() { this.cls = null; this.count = 0; }
+  move(probs) {
+    const pt = this.smooth(probs), p = this.p;
+    if (this.cool > 0) { this.cool--; return {}; }
+    const c = argmax(pt);
+    if (c === REST || pt[c] <= p.theta) { this.cls = null; this.count = 0; return {}; }
+    this.count = c === this.cls ? this.count + 1 : 1; this.cls = c;
+    if (this.count < p.hold) return {};
+    this.cls = null; this.count = 0; this.cool = p.refractory;
+    return { dq: sign(c) * this.cfg.step };
+  }
+}
+Evidence.defaults = { alpha: 0.5, theta: 0.5, hold: 2, refractory: 2 };
+class Proportional extends Controller {
+  reset() { super.reset(); this.cls = null; this.count = 0; }
+  onSwitch() { this.cls = null; this.count = 0; }
+  move(probs) {
+    const pt = this.smooth(probs), p = this.p, c = argmax(pt);
+    if (c === REST || pt[c] < p.theta) { this.cls = null; this.count = 0; return {}; }
+    this.count = c === this.cls ? this.count + 1 : 1; this.cls = c;
+    if (this.count < p.hold) return {};
+    const gain = Math.pow((pt[c] - p.theta) / (1 - p.theta), p.gamma);
+    const dq = sign(c) * p.vmax * gain * this.cfg.dt;
+    return Math.abs(dq) >= 0.005 ? { dq } : {};
+  }
+}
+Proportional.defaults = { alpha: 0.5, theta: 0.5, gamma: 1.0, vmax: 0.3, hold: 1 };
+class SharedAutonomy extends Proportional {
+  constructor(cfg, params, targets) { super(cfg, params); this.targets = targets; this.reset(); }
+  reset() { super.reset(); const k = this.targets ? this.targets.length : 4; this.b = new Array(k).fill(1 / k); this.auto = null; }
+  expected(obs) { return this.targets.map((t) => { const e = t[obs.j] - obs.q[obs.j]; return Math.abs(e) <= this.cfg.tol ? REST : (e < 0 ? LEFT : RIGHT); }); }
+  autoMove(obs) {
+    const lim = this.p.v_auto * this.cfg.dt, d = this.targets[this.auto].map((v, i) => v - obs.q[i]);
+    return { d, action: { auto: d.map((x) => clip(x, -lim, lim)), autoTarget: this.auto } };
+  }
+  step(probs, jaw, obs) {
+    const cfg = this.cfg, p = this.p;
+    if (this.auto !== null) {
+      const { d, action } = this.autoMove(obs);
+      if (d.every((x) => Math.abs(x) <= cfg.tol / 2)) {
+        this.b = this.b.map(() => 1); this.b[this.auto] = 0.1;
+        const s = this.b.reduce((x, y) => x + y, 0); this.b = this.b.map((x) => x / s);
+        this.auto = null; this.pt = null;
+      } else return action;
+    }
+    const action = super.step(probs, jaw, obs);
+    if (!action.switch && (action.dq || !p.gate)) {
+      const exp = this.expected(obs);
+      this.b = this.b.map((v, k) => Math.max(v * Math.pow(p.eps + probs[exp[k]], p.kappa), 1e-6));
+      const s = this.b.reduce((x, y) => x + y, 0); this.b = this.b.map((x) => x / s);
+      if (Math.max(...this.b) > p.tau) { this.auto = argmax(this.b); return this.autoMove(obs).action; }
+    }
+    return action;
+  }
+}
+SharedAutonomy.defaults = Object.assign({}, Proportional.defaults, { kappa: 0.3, tau: 0.9, v_auto: 0.3, eps: 0.05, gate: 1 });
+
+const ACCS = [45, 55, 65, 75, 85];
+function paramsFor(name, accPct, budget) {
+  if (name === 'direct') return {};
+  const nearest = ACCS.reduce((a, b) => (Math.abs(b - accPct) < Math.abs(a - accPct) ? b : a));
+  return TUNED[String(nearest)][name][String(budget)] || {};
+}
+function makeController(name, cfg, accPct, budget, targets) {
+  const p = paramsFor(name, accPct, budget);
+  if (name === 'direct') return new DirectArgmax(cfg, p);
+  if (name === 'evidence') return new Evidence(cfg, p);
+  if (name === 'proportional') return new Proportional(cfg, p);
+  return new SharedAutonomy(cfg, p, targets);
+}
+
+// headless runs, used to check this port against the Python simulator
+function runReach({ ctrl, acc, budget, goalIdx, seed, temperature = 1 }) {
+  const cfg = Object.assign({}, BASE_CFG), rand = makeRng(seed);
+  const task = new Task(cfg, 3, ARM_TARGETS, goalIdx, new Decoder(cfg, acc, temperature, rand));
+  const c = makeController(ctrl, cfg, acc, budget, ARM_TARGETS);
+  while (!task.done) { const { probs, jaw, obs } = task.sense(); task.act(c.step(probs, jaw, obs)); }
+  return { success: task.success, time: task.t * cfg.dt, stats: task.stats };
+}
+function runIdle({ ctrl, acc, budget, seed, minutes = 2, temperature = 1 }) {
+  const cfg = Object.assign({}, BASE_CFG), rand = makeRng(seed), goalIdx = seed % 4;
+  const task = new Task(cfg, 3, ARM_TARGETS, goalIdx, new Decoder(cfg, acc, temperature, rand), REST);
+  task.q = ARM_TARGETS[goalIdx].slice();
+  const c = makeController(ctrl, cfg, acc, budget, ARM_TARGETS);
+  let moved = 0;
+  for (let i = 0, n = Math.round(minutes * 60 / cfg.dt); i < n; i++) {
+    const { probs, jaw, obs } = task.sense(), before = task.q.slice();
+    task.act(c.step(probs, jaw, obs));
+    moved += task.q.reduce((s, v, k) => s + Math.abs(v - before[k]), 0);
+  }
+  return moved / minutes;
+}
+window.BCISim = { runReach, runIdle, SIGNAL, TUNED, makeRng, Decoder, Task, makeController, BASE_CFG, ARM_TARGETS };
+
+// ======================================================================= app state
+const $ = (id) => document.getElementById(id);
+const S = { view: 'arm', mode: 'watch', acc: 65, interp: 'proportional', budget: '0.25', calib: 1, axes: 2, speed: 1,
+  held: { left: false, right: false }, clench: 0, task: null, ctrl: null, trail: [], disp: [0, 0, 0], cool: 0, banner: null,
+  last: { probs: [1 / 3, 1 / 3, 1 / 3], jaw: false, intent: REST, move: 'hold' }, jawFlash: 0, stats: {}, prevGoal: -1 };
+const JOINT_NAMES = ['Base', 'Shoulder', 'Elbow'];
+const INTERP_NOTE = {
+  direct: 'Moves one step whenever a window names left or right. Fast, but it keeps moving on noise.',
+  evidence: 'Smooths the output, then issues a fixed step once a class stays confident for a few windows.',
+  proportional: 'Speed grows with how confident the smoothed decoder is; rest or low confidence holds still.',
+  shared: 'Works out which target you mean from your left and right commands, then finishes the reach itself.'
+};
+const freshStats = () => ({ trials: 0, hits: 0, times: [], restSteps: 0, restDecisions: 0 });
+S.stats = { arm: freshStats(), cursor: freshStats() };
+
+const dims = () => (S.view === 'arm' ? 3 : S.axes);
+const targetsNow = () => (S.view === 'arm' ? ARM_TARGETS : CURSOR_TARGETS[S.axes]);
+
+function newTrial() {
+  const n = dims(), targets = targetsNow();
+  const cfg = Object.assign({}, BASE_CFG, S.view === 'arm' ? {} : { tol: 0.1, tMax: 45 });
+  let goalIdx; do { goalIdx = Math.floor(Math.random() * targets.length); } while (goalIdx === S.prevGoal && targets.length > 1);
+  S.prevGoal = goalIdx;
+  const rand = makeRng((Math.random() * 4294967296) >>> 0);
+  S.task = new Task(cfg, n, targets, goalIdx, new Decoder(cfg, S.acc, S.calib, rand));
+  S.ctrl = makeController(S.interp, cfg, S.acc, S.budget, targets);
+  S.trail = []; S.banner = null; S.cool = 0;
+  S.disp = S.disp.slice(0, 3);
+  while (S.disp.length < 3) S.disp.push(0);
+}
+function resetStats() { S.stats[S.view] = freshStats(); renderStats(); }
+function restart(statsToo = true) { if (statsToo) S.stats[S.view] = freshStats(); newTrial(); syncUI(); }
+
+function readIntent() {
+  if (S.mode !== 'play') return null;
+  if (S.clench > 0 && S.task.n > 1) { S.clench = 0; return SWITCH; }
+  S.clench = 0;
+  if (S.held.left && !S.held.right) return LEFT;
+  if (S.held.right && !S.held.left) return RIGHT;
+  return REST;
+}
+
+function tick() {
+  const task = S.task;
+  if (S.cool > 0) { S.cool--; if (S.cool === 0) newTrial(); return; }
+  const { probs, jaw, obs } = task.sense(readIntent());
+  const intent = task.lastIntent, st = S.stats[S.view];
+  const before = task.q.slice();
+  const a = S.ctrl.step(probs, jaw, obs);
+  task.act(a);
+  const moved = task.q.reduce((s, v, k) => s + Math.abs(v - before[k]), 0);
+  if (intent === REST) { st.restDecisions++; st.restSteps += moved / BASE_CFG.step; }
+  S.last = { probs, jaw, intent, move: a.auto ? 'auto-reach' : a.switch ? 'switch joint' : a.dq ? (a.dq < 0 ? 'left' : 'right') : 'hold' };
+  if (jaw) S.jawFlash = 3;
+  S.trail.push(task.q.slice()); if (S.trail.length > 40) S.trail.shift();
+  if (task.done) {
+    st.trials++;
+    if (task.success) { st.hits++; st.times.push(task.t * task.cfg.dt); }
+    S.banner = task.success ? { kind: 'hit', text: 'Reached in ' + (task.t * task.cfg.dt).toFixed(1) + ' s' } : { kind: 'miss', text: 'Timed out' };
+    S.cool = 5;
+    renderStats();
+  }
+}
+
+// ======================================================================= UI sync
+function renderBars() {
+  const bars = document.querySelectorAll('#bars .bar'), p = S.last.probs, top = argmax(p);
+  bars.forEach((el, i) => { el.dataset.on = String(i === top); el.querySelector('.fill').style.width = (p[i] * 100).toFixed(0) + '%'; el.querySelector('.num').textContent = p[i].toFixed(2); });
+  $('rd-intent').textContent = S.last.intent === SWITCH ? 'jaw clench' : CLASS_NAME[S.last.intent];
+  $('rd-move').textContent = S.last.move;
+  $('lamp-jaw').dataset.on = String(S.jawFlash > 0);
+}
+function renderStats() {
+  const st = S.stats[S.view];
+  $('st-hits').textContent = st.hits + ' of ' + st.trials;
+  $('st-time').textContent = st.times.length ? (st.times.reduce((a, b) => a + b, 0) / st.times.length).toFixed(1) + ' s' : '–';
+  const mins = (st.restDecisions * BASE_CFG.dt) / 60;
+  $('st-rest').textContent = mins >= 0.2 ? (st.restSteps / mins).toFixed(1) + '/min' : '–';
+}
+function renderHud() {
+  const task = S.task, t = Math.min(task.t * task.cfg.dt, task.cfg.tMax).toFixed(1) + ' s';
+  $('chip-time').textContent = t; $('chip-time2').textContent = t;
+  $('chip-joint').textContent = 'joint: ' + JOINT_NAMES[task.j];
+  $('chip-axis').textContent = task.n === 1 ? 'axis: horizontal' : 'axis: ' + (task.j === 0 ? 'horizontal' : 'vertical');
+  const b = S.banner, el = $(S.view === 'arm' ? 'banner-arm' : 'banner-cursor');
+  $('banner-arm').hidden = $('banner-cursor').hidden = true;
+  if (b) { el.hidden = false; el.dataset.kind = b.kind; el.textContent = b.text; }
+}
+function syncUI() {
+  $('acc-val').textContent = S.acc + '%';
+  $('interp-note').textContent = INTERP_NOTE[S.interp];
+  const strict = S.interp !== 'direct';
+  $('f-budget').hidden = !strict;
+  const lab = { '0.05': '~1 false step/min', '0.25': '~5', '1.0': '~20' };
+  $('budget-val').textContent = lab[S.budget];
+  for (const [id, key] of [['seg-mode', 'mode'], ['seg-budget', 'budget'], ['seg-calib', 'calib'], ['seg-axes', 'axes'], ['seg-speed', 'speed']])
+    $(id).querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(String(S[key]) === b.dataset.v)));
+  $('f-axes').hidden = S.view !== 'cursor';
+  $('f-speed').hidden = S.mode !== 'watch';
+  $('pad-clench').hidden = dims() === 1;
+  $('clench-label').textContent = S.view === 'arm' ? 'Jaw clench: next joint' : 'Jaw clench: switch axis';
+  $('tab-arm').setAttribute('aria-selected', String(S.view === 'arm')); $('tab-cursor').setAttribute('aria-selected', String(S.view === 'cursor'));
+  $('view-arm').hidden = S.view !== 'arm'; $('view-cursor').hidden = S.view !== 'cursor';
+  $('input-note').textContent = S.mode === 'play'
+    ? 'Nothing held means rest. Hold left or right to imagine that hand; the arm or cursor follows what the decoder makes of it.'
+    : 'A scripted user is playing. Press any input to take over.';
+  renderStats(); renderBars(); resize();
+}
+function setMode(m) { if (S.mode === m) return; S.mode = m; S.held.left = S.held.right = false; S.clench = 0; if (m === 'play') S.speed = 1; syncUI(); }
+
+// ======================================================================= input
+function holdPad(el, key) {
+  const set = (v) => { S.held[key] = v; el.dataset.down = String(v); if (v) setMode('play'); };
+  el.addEventListener('pointerdown', (e) => { e.preventDefault(); el.setPointerCapture(e.pointerId); set(true); });
+  for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) el.addEventListener(ev, () => set(false));
+  el.addEventListener('contextmenu', (e) => e.preventDefault());
+}
+holdPad($('pad-left'), 'left'); holdPad($('pad-right'), 'right');
+(() => {
+  const el = $('pad-clench');
+  const press = () => { S.clench++; setMode('play'); el.dataset.down = 'true'; setTimeout(() => { el.dataset.down = 'false'; }, 160); };
+  el.addEventListener('pointerdown', (e) => { e.preventDefault(); press(); });
+  el.addEventListener('contextmenu', (e) => e.preventDefault());
+})();
+const KEYS = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right' };
+window.addEventListener('keydown', (e) => {
+  if (e.target && /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) && e.target.type !== 'range') return;
+  const k = KEYS[e.code];
+  if (k) { e.preventDefault(); S.held[k] = true; $('pad-' + k).dataset.down = 'true'; setMode('play'); }
+  else if (['Space', 'KeyJ', 'ArrowDown'].includes(e.code)) { e.preventDefault(); if (!e.repeat) { S.clench++; setMode('play'); $('pad-clench').dataset.down = 'true'; setTimeout(() => { $('pad-clench').dataset.down = 'false'; }, 160); } }
+});
+window.addEventListener('keyup', (e) => { const k = KEYS[e.code]; if (k) { S.held[k] = false; $('pad-' + k).dataset.down = 'false'; } });
+window.addEventListener('blur', () => { S.held.left = S.held.right = false; $('pad-left').dataset.down = $('pad-right').dataset.down = 'false'; });
+
+function bindSeg(id, key, parse) {
+  $(id).addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const v = parse ? parse(b.dataset.v) : b.dataset.v;
+    if (key === 'mode') return setMode(v);
+    if (S[key] === v) return;
+    S[key] = v;
+    if (key === 'speed') return syncUI();
+    restart();
+  });
+}
+bindSeg('seg-mode', 'mode'); bindSeg('seg-budget', 'budget'); bindSeg('seg-calib', 'calib', Number); bindSeg('seg-axes', 'axes', Number); bindSeg('seg-speed', 'speed', Number);
+$('acc').addEventListener('input', (e) => { S.acc = Number(e.target.value); $('acc-val').textContent = S.acc + '%'; });
+$('acc').addEventListener('change', (e) => { e.target.blur(); restart(); });
+$('interp').addEventListener('change', (e) => { S.interp = e.target.value; e.target.blur(); restart(); });
+$('btn-skip').addEventListener('click', () => { newTrial(); syncUI(); });
+$('btn-reset').addEventListener('click', () => restart());
+function setView(v) { if (S.view === v) return; S.view = v; S.held.left = S.held.right = false; restart(false); renderStats(); }
+$('tab-arm').addEventListener('click', () => setView('arm'));
+$('tab-cursor').addEventListener('click', () => setView('cursor'));
+
+// ======================================================================= theme
+const cssVar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let T = {};
+function readTheme() { T = { surface: cssVar('--surface'), stage: cssVar('--surface-2'), ink: cssVar('--ink'), ink2: cssVar('--ink-2'), ink3: cssVar('--ink-3'), line: cssVar('--line'), accent: cssVar('--accent'), goal: cssVar('--goal') }; applyTheme3D(); }
+
+// ======================================================================= 3D arm
+const L1 = 1.35, L2 = 1.15, BASE_H = 0.35;
+const armAngles = (q) => ({ yaw: q[0] * 1.1, th1: 0.5 + q[1] * 0.5, th2: 0.9 + q[2] * 0.7 });
+function armTip(q) {
+  const { yaw, th1, th2 } = armAngles(q), r = L1 * Math.sin(th1) + L2 * Math.sin(th1 + th2), y = BASE_H + L1 * Math.cos(th1) + L2 * Math.cos(th1 + th2);
+  return [r * Math.cos(yaw), y, -r * Math.sin(yaw)];
+}
+let gl = null; // { renderer, scene, camera, parts... }
+const cam = { az: 0.5, el: 0.3, dist: 6.4, target: [0.95, 1.2, 0] };
+const CAM0 = Object.assign({}, cam, { target: cam.target.slice() });
+function init3D() {
+  if (typeof THREE === 'undefined') { $('nogl').hidden = false; return; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: $('gl'), antialias: true }); } catch (e) { $('nogl').hidden = false; return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(38, 4 / 3, 0.1, 100);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8892a0, 0.85));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(3, 6, 4); scene.add(sun);
+  const mats = {
+    link: new THREE.MeshStandardMaterial({ roughness: 0.5, metalness: 0.15 }),
+    joint: new THREE.MeshStandardMaterial({ roughness: 0.4, metalness: 0.2 }),
+    base: new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.1 }),
+    tip: new THREE.MeshStandardMaterial({ roughness: 0.3 }),
+    goal: new THREE.MeshStandardMaterial({ roughness: 0.4, transparent: true, opacity: 0.9 }),
+    cand: new THREE.MeshStandardMaterial({ roughness: 0.6, transparent: true, opacity: 0.45 }),
+    ring: new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.95 }),
+    line: new THREE.LineBasicMaterial(), auto: new THREE.LineDashedMaterial({ dashSize: 0.12, gapSize: 0.08 }),
+    ground: new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.55 }),
+  };
+  const ground = new THREE.Mesh(new THREE.CircleGeometry(4.2, 64), mats.ground); ground.rotation.x = -Math.PI / 2; scene.add(ground);
+  const grid = new THREE.GridHelper(8.4, 16); grid.position.y = 0.002; scene.add(grid);
+  const yaw = new THREE.Group(); scene.add(yaw);
+  const pedestal = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.7, BASE_H, 40), mats.base); pedestal.position.y = BASE_H / 2; scene.add(pedestal);
+  const turret = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.14, 32), mats.joint); turret.position.y = BASE_H + 0.07; scene.add(turret);
+  yaw.position.y = BASE_H;
+  const sh = new THREE.Group(); yaw.add(sh);
+  const sJoint = new THREE.Mesh(new THREE.SphereGeometry(0.2, 32, 20), mats.joint); sh.add(sJoint);
+  const link1 = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, L1, 24), mats.link); link1.position.y = L1 / 2; sh.add(link1);
+  const el = new THREE.Group(); el.position.y = L1; sh.add(el);
+  const eJoint = new THREE.Mesh(new THREE.SphereGeometry(0.17, 32, 20), mats.joint); el.add(eJoint);
+  const link2 = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, L2, 24), mats.link); link2.position.y = L2 / 2; el.add(link2);
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(0.13, 24, 16), mats.tip); tip.position.y = L2; el.add(tip);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.025, 12, 48), mats.ring); scene.add(ring);
+  const goalMesh = new THREE.Mesh(new THREE.SphereGeometry(0.2, 32, 20), mats.goal); scene.add(goalMesh);
+  const goalRing = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.025, 12, 48), mats.ring.clone()); scene.add(goalRing);
+  const cands = ARM_TARGETS.map(() => { const m = new THREE.Mesh(new THREE.SphereGeometry(0.1, 20, 14), mats.cand); scene.add(m); return m; });
+  const trailGeo = new THREE.BufferGeometry(); trailGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(41 * 3), 3));
+  const trail = new THREE.Line(trailGeo, mats.line); trail.frustumCulled = false; scene.add(trail);
+  const autoGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3(1, 0, 0)]);
+  const autoLine = new THREE.Line(autoGeo, mats.auto); autoLine.frustumCulled = false; autoLine.visible = false; scene.add(autoLine);
+  gl = { renderer, scene, camera, mats, grid, yaw, sh, el, tip, ring, goalMesh, goalRing, cands, trail, trailGeo, autoLine, autoGeo, sJoint, eJoint, turret };
+  cands.forEach((m, i) => m.position.fromArray(armTip(ARM_TARGETS[i])));
+  applyTheme3D();
+  // orbit: drag, wheel, pinch
+  const cv = $('gl'), ptrs = new Map(); let pinch = 0;
+  cv.addEventListener('pointerdown', (e) => { cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); pinch = 0; });
+  cv.addEventListener('pointermove', (e) => {
+    if (!ptrs.has(e.pointerId)) return;
+    const p = ptrs.get(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptrs.size === 1) { cam.az -= (e.clientX - p[0]) * 0.008; cam.el = clip(cam.el + (e.clientY - p[1]) * 0.006, 0.03, 1.45); }
+    else if (ptrs.size === 2) { const [a, b] = [...ptrs.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) cam.dist = clip(cam.dist * (pinch / d), 3.5, 14); pinch = d; }
+  });
+  for (const ev of ['pointerup', 'pointercancel']) cv.addEventListener(ev, (e) => { ptrs.delete(e.pointerId); pinch = 0; });
+  cv.addEventListener('wheel', (e) => { e.preventDefault(); cam.dist = clip(cam.dist * Math.exp(e.deltaY * 0.001), 3.5, 14); }, { passive: false });
+  cv.addEventListener('dblclick', () => Object.assign(cam, CAM0, { target: CAM0.target.slice() }));
+}
+function applyTheme3D() {
+  if (!gl) return;
+  const c = (v) => new THREE.Color(v), m = gl.mats;
+  gl.scene.background = c(T.stage);
+  m.link.color = c(T.ink2); m.joint.color = c(T.ink); m.base.color = c(T.ink3); m.tip.color = c(T.accent); m.tip.emissive = c(T.accent); m.tip.emissiveIntensity = 0.25;
+  m.goal.color = c(T.goal); m.cand.color = c(T.ink3); m.ring.color = c(T.accent); gl.goalRing.material.color = c(T.goal);
+  m.line.color = c(T.accent); m.auto.color = c(T.goal); m.ground.color = c(T.surface);
+  const g = gl.grid.material; g.color = c(T.line); g.transparent = true; g.opacity = 0.9;
+}
+function render3D(now) {
+  if (!gl) return;
+  const { renderer, scene, camera } = gl, q = S.disp, a = armAngles(q), task = S.task;
+  gl.yaw.rotation.y = a.yaw; gl.sh.rotation.z = -a.th1; gl.el.rotation.z = -a.th2;
+  const tip = armTip(q);
+  // selected joint ring
+  const jp = task.j === 0 ? [0, BASE_H + 0.07, 0] : task.j === 1 ? (() => { const r = new THREE.Vector3(); gl.sJoint.getWorldPosition(r); return r.toArray(); })() : (() => { const r = new THREE.Vector3(); gl.eJoint.getWorldPosition(r); return r.toArray(); })();
+  gl.ring.position.fromArray(jp);
+  gl.ring.rotation.set(task.j === 0 ? Math.PI / 2 : 0, task.j === 0 ? 0 : a.yaw + Math.PI / 2, 0);
+  const goalPos = armTip(task.goal);
+  gl.goalMesh.position.fromArray(goalPos); gl.goalRing.position.fromArray(goalPos);
+  gl.goalRing.lookAt(camera.position);
+  const pulse = 1 + 0.12 * Math.sin(now / 260); gl.goalRing.scale.setScalar(pulse);
+  gl.goalMesh.material.opacity = task.inTol > 0 ? 1 : 0.85;
+  // trail
+  const pos = gl.trailGeo.attributes.position, tr = S.trail.length ? S.trail : [task.q];
+  for (let i = 0; i < 41; i++) { const p = armTip(tr[Math.min(i, tr.length - 1)]); pos.setXYZ(i, p[0], p[1], p[2]); }
+  gl.trailGeo.setDrawRange(0, tr.length); pos.needsUpdate = true;
+  // auto-reach guide
+  const at = task.autoTarget;
+  gl.autoLine.visible = at !== null;
+  if (at !== null) { gl.autoGeo.setFromPoints([new THREE.Vector3(...tip), new THREE.Vector3(...armTip(ARM_TARGETS[at]))]); gl.autoLine.computeLineDistances(); }
+  // camera
+  const c = cam, ce = Math.cos(c.el);
+  camera.position.set(c.target[0] + c.dist * ce * Math.sin(c.az), c.target[1] + c.dist * Math.sin(c.el), c.target[2] + c.dist * ce * Math.cos(c.az));
+  camera.lookAt(c.target[0], c.target[1], c.target[2]);
+  renderer.render(scene, camera);
+}
+
+// ======================================================================= cursor field
+const cvs = $('cv'), ctx = cvs.getContext('2d');
+function fieldRect(w, h, n) {
+  const pad = 28;
+  if (n === 1) return { x: pad, y: h / 2 - 34, w: w - 2 * pad, h: 68 };
+  const side = Math.min(w - 2 * pad, h - 2 * pad - 14); return { x: (w - side) / 2, y: (h - side) / 2, w: side, h: side };
+}
+function drawCursor() {
+  const w = cvs.clientWidth, h = cvs.clientHeight, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  if (cvs.width !== Math.round(w * dpr) || cvs.height !== Math.round(h * dpr)) { cvs.width = Math.round(w * dpr); cvs.height = Math.round(h * dpr); }
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+  const task = S.task, n = task.n, r = fieldRect(w, h, n), cx = r.x + r.w / 2, cy = r.y + r.h / 2;
+  const px = (q) => cx + q[0] * (r.w / 2), py = (q) => (n === 1 ? cy : cy - q[1] * (r.h / 2));
+  const tolPx = task.cfg.tol * (r.w / 2);
+  ctx.fillStyle = T.surface; ctx.strokeStyle = T.line; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.roundRect(r.x, r.y, r.w, r.h, 10); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = T.line; ctx.setLineDash([3, 5]);
+  ctx.beginPath(); ctx.moveTo(r.x, cy); ctx.lineTo(r.x + r.w, cy); if (n > 1) { ctx.moveTo(cx, r.y); ctx.lineTo(cx, r.y + r.h); } ctx.stroke(); ctx.setLineDash([]);
+  task.targets.forEach((t, i) => { if (i === task.goalIdx) return; ctx.strokeStyle = T.ink3; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(px(t), py(t), tolPx, 0, 7); ctx.stroke(); ctx.globalAlpha = 1; });
+  const g = task.goal, gx = px(g), gy = py(g);
+  ctx.fillStyle = T.goal; ctx.globalAlpha = 0.16 + 0.2 * Math.min(1, task.inTol / task.cfg.dwell); ctx.beginPath(); ctx.arc(gx, gy, tolPx, 0, 7); ctx.fill(); ctx.globalAlpha = 1;
+  ctx.strokeStyle = T.goal; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(gx, gy, tolPx, 0, 7); ctx.stroke();
+  if (task.autoTarget !== null) { const t = task.targets[task.autoTarget]; ctx.setLineDash([5, 5]); ctx.strokeStyle = T.goal; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(px(S.disp), py(S.disp)); ctx.lineTo(px(t), py(t)); ctx.stroke(); ctx.setLineDash([]); }
+  ctx.strokeStyle = T.accent; ctx.lineWidth = 2; ctx.globalAlpha = 0.5; ctx.beginPath();
+  S.trail.forEach((q, i) => { const x = px(q), y = py(q); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); ctx.globalAlpha = 1;
+  const x = px(S.disp), y = py(S.disp);
+  ctx.strokeStyle = T.accent; ctx.lineWidth = 2; ctx.globalAlpha = 0.9;
+  const horiz = task.j === 0, len = 20;
+  ctx.beginPath(); if (n === 1 || horiz) { ctx.moveTo(x - len, y); ctx.lineTo(x + len, y); } else { ctx.moveTo(x, y - len); ctx.lineTo(x, y + len); } ctx.stroke(); ctx.globalAlpha = 1;
+  ctx.fillStyle = T.accent; ctx.beginPath(); ctx.arc(x, y, 8, 0, 7); ctx.fill();
+  ctx.strokeStyle = T.surface; ctx.lineWidth = 2; ctx.stroke();
+}
+
+// ======================================================================= loop
+function resize() {
+  if (gl) { const v = $('view-arm'), w = v.clientWidth, h = v.clientHeight; if (w && h) { gl.renderer.setSize(w, h, false); gl.camera.aspect = w / h; gl.camera.updateProjectionMatrix(); } }
+}
+if (window.ResizeObserver) new ResizeObserver(resize).observe(document.body); else window.addEventListener('resize', resize);
+let lastTs = 0, acc = 0;
+function frame(ts) {
+  const dt = Math.min(0.25, (ts - (lastTs || ts)) / 1000); lastTs = ts;
+  const speed = S.mode === 'watch' ? S.speed : 1;
+  acc += dt * speed;
+  while (acc >= BASE_CFG.dt) { tick(); acc -= BASE_CFG.dt; if (S.jawFlash > 0) S.jawFlash--; }
+  const k = 1 - Math.exp(-dt / 0.1), q = S.task.q;
+  for (let i = 0; i < 3; i++) S.disp[i] += ((q[i] === undefined ? 0 : q[i]) - S.disp[i]) * k;
+  renderBars(); renderHud();
+  if (S.view === 'arm') render3D(ts); else drawCursor();
+  requestAnimationFrame(frame);
+}
+const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+if (mq && mq.addEventListener) mq.addEventListener('change', readTheme);
+new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+if (!CanvasRenderingContext2D.prototype.roundRect) CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h) { this.rect(x, y, w, h); };
+
+readTheme(); init3D(); readTheme(); newTrial(); syncUI(); requestAnimationFrame(frame);
+window.BCISim.state = S;
+})();
+</script>
+
+</body></html>

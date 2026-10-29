@@ -20,6 +20,10 @@ Edit → Allowed domains; steps at https://code.claude.com/docs/en/cloud-environ
   signal reaches the central channels strongly (about the strength implied by the desktop's 0.49 uncleaned correlation),
   and then helps eye-artifact removal and detection but not the 8-30 Hz band. **Not tested on real data.**
 
+- **Interactive 3D arm and cursor demo** (`sim/web/`, published as an Artifact page). Same decoder model and interpreters as the
+  Python sim, in the browser: watch a scripted user or play with keys or on-screen buttons, at any decoder accuracy, with
+  over/under-confident output. Checked against the Python numbers and with keyboard/pointer tests.
+
 ## Corrections to what I said earlier in the conversation
 
 - I listed a "simulated online run" as a gap. The desktop pipeline already has one (part E of `evaluate_public.py`, the full

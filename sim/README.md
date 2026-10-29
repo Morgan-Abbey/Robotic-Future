@@ -27,7 +27,26 @@ It is a stand-in, not your arm and not your decoder:
 | `armsim/ppo_env.py`, `armsim/ppo.py` | Gymnasium environment for a learned interpreter, and a small numpy PPO |
 | `run_sweep.py`, `run_ppo_grid.py`, `make_report.py`, `make_animation.py` | reproduce everything in `../reports/` |
 | `models/` | the trained PPO policies behind the report (a few KB each) |
+| `web/` | the interactive 3D arm and cursor demo (`template.html` + `build.py` → `bci_demo.html`) and its browser checks |
 | `tests/` | 33 tests (`pytest`) |
+
+## Interactive demo (3D arm and cursor)
+
+`web/bci_demo.html` is a single-page, in-browser version of this simulator: a 3D arm (three.js) and a cursor field
+(left/right, or left/right plus up/down with the jaw clench switching axis), both driven through the same decoder model
+and interpreters. It runs the scripted user (Watch) or you (hold A/← and D/→ to imagine left and right hand, Space or J for
+the jaw clench; on a phone, hold the on-screen buttons). It exposes the decoder accuracy, the interpreter, its strictness,
+and over/under-confident decoder output, and shows the decoder probabilities live.
+
+- The interpreter settings and decoder-signal table are baked in from `../reports/arm_sim_results.json`; rebuild after a new
+  sweep with `python web/build.py` (writes `web/bci_demo.html` for the Artifact page and `web/bci_demo_standalone.html`
+  that opens in any browser). Edit `web/template.html`, not the generated files.
+- The JavaScript is a port of `armsim`. `web/check_demo.js` (Playwright) runs it headless against the Python numbers,
+  takes screenshots and exercises keyboard and pointer input:
+  `node web/check_demo.js <three.min.js r128> <screenshot dir> [fidelity|shots|interact|all]`.
+  Fidelity on the eight cells compared: success rate and mean reach time within about 1-2 s of the Python results, false
+  motion at rest within noise; one cell (evidence, 75%) fails 1.4% of reaches against 0.6% in Python over 1500 runs.
+- The arm geometry (`armAngles`, link lengths) is a placeholder. The cursor uses a wider tolerance (0.1) than the arm (0.06).
 
 ## Run it
 
