@@ -46,6 +46,7 @@ and over/under-confident decoder output, and shows the decoder probabilities liv
   `node web/check_demo.js <three.min.js r128> <screenshot dir> [fidelity|shots|interact|all]`.
   Fidelity on the eight cells compared: success rate and mean reach time within about 1-2 s of the Python results, false
   motion at rest within noise; one cell (evidence, 75%) fails 1.4% of reaches against 0.6% in Python over 1500 runs.
+- When the page is served by the live bridge (`../live/`) a Live tab appears: the same 3D arm shows the pose commanded from real or simulated decoder frames, with training controls and arm output. See `../live/README.md`.
 - The arm geometry (`armAngles`, link lengths) is a placeholder. The cursor uses a wider tolerance (0.1) than the arm (0.06).
 
 ## Run it

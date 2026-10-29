@@ -1,0 +1,25 @@
+{
+  "engine": "udp",
+  "interpreter": "proportional",
+  "budget": "0.25",
+  "profile_accuracy": 65,
+  "dt": 0.25,
+  "arm": {
+    "port": "COM15",
+    "send": false,
+    "steps_per_unit": [0, 0, 0],
+    "invert": [false, false, false],
+    "limit_units": 0.6,
+    "max_steps_per_message": 20,
+    "max_rate_hz": 2.0,
+    "max_jog_steps": 10,
+    "format": "{a} {b} {c}\n",
+    "stop_line": null,
+    "protocol_verified": false
+  },
+  "scripts": {
+    "record": {"cwd": "C:\\Users\\morga\\OneDrive\\Desktop\\Claude Code\\openbci-cyton", "cmd": ["python", "record_session.py", "--board", "cyton", "--layout", "6eeg", "--out", "data/sessions/live.npz"]},
+    "train":  {"cwd": "C:\\Users\\morga\\OneDrive\\Desktop\\Claude Code\\openbci-cyton", "cmd": ["python", "train.py", "data/sessions/live.npz", "--out", "data/models/live.pkl"]},
+    "live":   {"cwd": "C:\\Users\\morga\\OneDrive\\Desktop\\Claude Code\\openbci-cyton", "cmd": ["python", "run_bci.py", "--model", "data/models/live.pkl"]}
+  }
+}

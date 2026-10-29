@@ -24,6 +24,13 @@ Edit → Allowed domains; steps at https://code.claude.com/docs/en/cloud-environ
   Python sim, in the browser: watch a scripted user or play with keys or on-screen buttons, at any decoder accuracy, with
   over/under-confident output. Checked against the Python numbers and with keyboard/pointer tests.
 
+- **Live bridge** (`live/`): a local Python bridge plus a Live tab in the demo page. It launches your record/train/live scripts,
+  shows cues and logs, takes decoder frames from your pipeline over UDP (`bci_emit.py`), runs the proportional/shared-autonomy
+  interpreters, shows the commanded pose on the 3D arm, and owns the arm's serial port behind safety limits (off by default,
+  two-click enable, E-STOP/Esc, heartbeat and frame watchdogs, travel and rate limits). 22 Python tests plus a headless-browser
+  end-to-end test, all against a simulated decoder and a file standing in for the serial port. **Not tested: your pipeline hooks,
+  the real Cyton, real serial, the arm, or its firmware protocol.** Start with `live/README.md`; the desktop session follows `live/HANDOFF.md`.
+
 ## Corrections to what I said earlier in the conversation
 
 - I listed a "simulated online run" as a gap. The desktop pipeline already has one (part E of `evaluate_public.py`, the full
@@ -37,6 +44,10 @@ Edit → Allowed domains; steps at https://code.claude.com/docs/en/cloud-environ
   suit the arm controller; the simulation found no evidence it beats simpler controllers.
 
 ## To do next (needs the desktop code or data)
+
+0. **Commission the live bridge** (see `live/HANDOFF.md`): add the three `bci_emit` hooks to the pipeline, fill `live/config.json`, check on the
+   synthetic board, then with the Cyton and the arm disconnected. Only after that: find the arm firmware's real protocol, calibrate
+   `steps_per_unit`, jog at low steps, then enable output with the arm clear of obstacles.
 
 1. **Export replay data from part E** (`probs` N×3 rest/left/right and cue `intent` N, per person) and run
    `sim/` with `ReplayDecoder` to tune and compare interpreters on real error patterns (format in `sim/README.md`).

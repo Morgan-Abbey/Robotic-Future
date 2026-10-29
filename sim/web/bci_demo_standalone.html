@@ -11,20 +11,20 @@
    Type: IBM Plex Sans for labels, IBM Plex Mono for every number a decoder would print. */
 :root {
   --bg: #f2f4f6; --surface: #ffffff; --surface-2: #e8ebef; --ink: #13171b; --ink-2: #47525d; --ink-3: #66717c;
-  --line: #d3d9df; --accent: #2a78d6; --accent-strong: #1d62b8; --on-accent: #ffffff; --goal: #d9531f; --good: #0a7d0a;
+  --line: #d3d9df; --accent: #2a78d6; --accent-strong: #1d62b8; --on-accent: #ffffff; --goal: #d9531f; --good: #0a7d0a; --danger: #c4231c; --on-danger: #ffffff;
   --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0e1215; --surface: #151a1f; --surface-2: #1c232a; --ink: #e7eaee; --ink-2: #a2acb6; --ink-3: #8a95a0;
-    --line: #29313a; --accent: #4a93ee; --accent-strong: #2f7fe0; --on-accent: #0b1117; --goal: #f27a45; --good: #3fbf3f;
+    --line: #29313a; --accent: #4a93ee; --accent-strong: #2f7fe0; --on-accent: #0b1117; --goal: #f27a45; --good: #3fbf3f; --danger: #ff6a5f; --on-danger: #1a0705;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0e1215; --surface: #151a1f; --surface-2: #1c232a; --ink: #e7eaee; --ink-2: #a2acb6; --ink-3: #8a95a0;
-  --line: #29313a; --accent: #4a93ee; --accent-strong: #2f7fe0; --on-accent: #0b1117; --goal: #f27a45; --good: #3fbf3f;
+  --line: #29313a; --accent: #4a93ee; --accent-strong: #2f7fe0; --on-accent: #0b1117; --goal: #f27a45; --good: #3fbf3f; --danger: #ff6a5f; --on-danger: #1a0705;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -90,6 +90,20 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
 .stat .v { font-family: var(--font-num); font-size: 17px; font-variant-numeric: tabular-nums; }
 .foot { font-size: 12.5px; color: var(--ink-3); max-width: 90ch; }
 .foot p { margin: 0 0 6px; }
+.cue { position: fixed; left: 50%; top: calc(14px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 15; text-align: center; background: var(--surface); border: 3px solid var(--accent); border-radius: 14px; padding: 12px 28px; min-width: 240px; max-width: calc(100vw - 32px); pointer-events: none; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25); }
+.cue b { display: block; font-size: 30px; letter-spacing: 0.01em; }
+.cue span { font-family: var(--font-num); font-size: 13px; color: var(--ink-2); }
+.log { font-family: var(--font-num); font-size: 12px; line-height: 1.4; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; height: 132px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ink-2); }
+.estop { font: inherit; font-weight: 700; font-size: 18px; letter-spacing: 0.04em; background: var(--danger); color: var(--on-danger); border: 0; border-radius: 10px; min-height: 56px; cursor: pointer; width: 100%; }
+.estop.float { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: auto; min-width: 128px; padding: 0 18px; min-height: 48px; z-index: 20; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); }
+.btn.warn { background: var(--danger); color: var(--on-danger); border-color: var(--danger); }
+.btn.on { background: var(--accent-strong); color: var(--on-accent); border-color: var(--accent-strong); }
+.armline { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; }
+.armline b { font-weight: 600; }
+.armline .bad { color: var(--danger); }
+ul.blockers { margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--ink-2); }
+.jog { display: grid; grid-template-columns: auto 1fr auto auto; gap: 6px; align-items: center; }
+.conn { font-family: var(--font-num); font-size: 12px; }
 @media (prefers-reduced-motion: reduce) { .bar .fill { transition: none; } }
 </style>
 
@@ -97,11 +111,12 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
   <header class="top">
     <div>
       <h1>BCI Control Simulator</h1>
-      <p class="sub">Drive a 3D arm or a cursor through a model of an EEG decoder, and feel what accuracy, confidence and the interpreter do to control.</p>
+      <p class="sub" id="sub">Drive a 3D arm or a cursor through a model of an EEG decoder, and feel what accuracy, confidence and the interpreter do to control.</p>
     </div>
     <div class="seg" role="tablist" aria-label="View">
       <button id="tab-arm" role="tab" aria-selected="true">3D arm</button>
       <button id="tab-cursor" role="tab" aria-selected="false">Cursor</button>
+      <button id="tab-live" role="tab" aria-selected="false" hidden>Live</button>
     </div>
   </header>
 
@@ -109,7 +124,8 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
     <section class="stage" aria-label="Simulation">
       <div class="view" id="view-arm">
         <canvas id="gl" aria-label="3D view of the arm"></canvas>
-        <div class="chips"><span class="chip"><span class="dot"></span>goal</span><span class="chip" id="chip-joint">joint: Base</span><span class="chip" id="chip-time">0.0 s</span></div>
+        <div class="chips"><span class="chip" id="chip-goal"><span class="dot"></span>goal</span><span class="chip" id="chip-joint">joint: Base</span><span class="chip" id="chip-time">0.0 s</span><span class="chip" id="chip-conn" hidden>bridge: connecting</span></div>
+        <div class="cue" id="cue" hidden><b id="cue-main"></b><span id="cue-sub"></span></div>
         <div class="banner" id="banner-arm" hidden></div>
         <div class="hint">Drag to orbit, scroll or pinch to zoom, double-click to reset</div>
         <div class="nogl" id="nogl" hidden>The 3D view needs WebGL and three.js from cdnjs. The cursor mode still works.</div>
@@ -119,7 +135,7 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
         <div class="chips"><span class="chip"><span class="dot"></span>goal</span><span class="chip" id="chip-axis">axis: horizontal</span><span class="chip" id="chip-time2">0.0 s</span></div>
         <div class="banner" id="banner-cursor" hidden></div>
       </div>
-      <div class="card">
+      <div class="card" id="card-input">
         <h2>Your input</h2>
         <div class="pads" id="pads">
           <button class="pad" id="pad-left" aria-label="Imagine left hand"><span>◀ Left hand</span><small>hold · key A or ←</small></button>
@@ -143,11 +159,11 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
 
       <div class="card">
         <h2>Settings</h2>
-        <div class="field"><span class="lab">Who plays</span>
+        <div class="field" data-sim="1"><span class="lab">Who plays</span>
           <div class="seg" id="seg-mode"><button data-v="watch" aria-pressed="true">Watch</button><button data-v="play" aria-pressed="false">You play</button></div></div>
-        <div class="field"><label for="acc">Decoder accuracy <span class="val" id="acc-val">65%</span></label>
+        <div class="field"><label for="acc"><span id="acc-label">Decoder accuracy</span> <span class="val" id="acc-val">65%</span></label>
           <input type="range" id="acc" min="40" max="99" step="1" value="65">
-          <p class="note">Share of decoder windows that name the right class (rest, left, right).</p></div>
+          <p class="note" id="acc-note">Share of decoder windows that name the right class (rest, left, right).</p></div>
         <div class="field"><label for="interp">Interpreter</label>
           <select id="interp">
             <option value="direct">Argmax: move on every window</option>
@@ -159,17 +175,46 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
         <div class="field" id="f-budget"><span class="lab">Strictness <span class="val" id="budget-val"></span></span>
           <div class="seg" id="seg-budget"><button data-v="0.05" aria-pressed="false">Strict</button><button data-v="0.25" aria-pressed="true">Balanced</button><button data-v="1.0" aria-pressed="false">Loose</button></div>
           <p class="note">How much false motion at rest the settings allow. Stricter means slower.</p></div>
-        <div class="field"><span class="lab">Decoder confidence</span>
+        <div class="field" data-sim="1"><span class="lab">Decoder confidence</span>
           <div class="seg" id="seg-calib"><button data-v="0.5" aria-pressed="false">Over</button><button data-v="1" aria-pressed="true">Calibrated</button><button data-v="2" aria-pressed="false">Under</button></div>
           <p class="note">Interpreter settings are tuned for calibrated output. Try the other two.</p></div>
         <div class="field" id="f-axes" hidden><span class="lab">Cursor axes</span>
           <div class="seg" id="seg-axes"><button data-v="1" aria-pressed="false">Left and right</button><button data-v="2" aria-pressed="true">Plus up and down</button></div></div>
         <div class="field" id="f-speed"><span class="lab">Watch speed</span>
           <div class="seg" id="seg-speed"><button data-v="1" aria-pressed="true">1×</button><button data-v="2" aria-pressed="false">2×</button><button data-v="4" aria-pressed="false">4×</button></div></div>
-        <div class="row"><button class="btn" id="btn-skip">Skip target</button><button class="btn" id="btn-reset">Reset stats</button></div>
+        <div class="row" data-sim="1"><button class="btn" id="btn-skip">Skip target</button><button class="btn" id="btn-reset">Reset stats</button></div>
       </div>
 
-      <div class="card">
+      <div class="card" id="card-train" data-live="1" hidden>
+        <h2>Training</h2>
+        <div class="row">
+          <button class="btn" id="btn-record" data-script="record">Record training session</button>
+          <button class="btn" id="btn-train" data-script="train">Train model</button>
+          <button class="btn" id="btn-live" data-script="live">Start live decode</button>
+        </div>
+        <p class="note" id="train-note">Record shows the cues here while your pipeline records EEG. Train fits the decoder. Live decode streams its output to the arm.</p>
+        <div class="log" id="log" aria-live="polite"></div>
+      </div>
+
+      <div class="card" id="card-arm" data-live="1" hidden>
+        <h2>Arm output</h2>
+        <div class="armline"><span>State: <b id="arm-state">dry run</b></span><span>Sent: <b id="arm-sent" class="conn">0 0 0</b></span><span>Pending: <b id="arm-pend" class="conn">0 0 0</b></span></div>
+        <ul class="blockers" id="arm-blockers"></ul>
+        <button class="estop" id="btn-estop" aria-label="Emergency stop">E-STOP (Esc)</button>
+        <div class="row">
+          <button class="btn" id="btn-arm-enable">Enable arm output</button>
+          <button class="btn warn" id="btn-arm-confirm" hidden>Confirm: the arm will move</button>
+          <button class="btn" id="btn-arm-disable">Disable</button>
+          <button class="btn" id="btn-arm-reset" hidden>Reset e-stop</button>
+        </div>
+        <div class="jog"><label for="jog-joint">Jog</label>
+          <select id="jog-joint"><option value="0">Base (joint 1)</option><option value="1">Shoulder (joint 2)</option><option value="2">Elbow (joint 3)</option></select>
+          <button class="btn" id="btn-jog-minus" aria-label="Jog negative">−5</button><button class="btn" id="btn-jog-plus" aria-label="Jog positive">+5</button></div>
+        <div class="row"><button class="btn" id="btn-zero">Set zero here</button></div>
+        <p class="note" id="arm-note">Steppers are open loop: home the arm by hand, then press Set zero here. Jog needs the arm enabled and moves a few steps to check direction and scale.</p>
+      </div>
+
+      <div class="card" id="card-stats">
         <h2>This run</h2>
         <div class="stats">
           <div class="stat"><span class="k">Reached</span><span class="v" id="st-hits">0 of 0</span></div>
@@ -181,12 +226,17 @@ select { font: inherit; width: 100%; min-height: 38px; padding: 6px 8px; border:
     </aside>
   </main>
 
-  <footer class="foot">
+  <footer class="foot" id="foot-live" hidden>
+    <p>Live mode. Decoder frames arrive from the bridge, the interpreter and the arm output run in the bridge, and this page only displays them and sends your commands. The arm drawn here is the commanded pose, worked out from the steps sent; the steppers are open loop, so it is not a measurement of where the arm really is. The geometry is a placeholder.</p>
+    <p>Esc or the red button stops arm output at any time. Arm output is off until the bridge was started with --send and you enable it here.</p>
+  </footer>
+  <footer class="foot" id="foot-sim">
     <p>This is a simulation. The decoder is a statistical model at the accuracy you choose, with outputs that stay correlated from one window to the next and a jaw-clench detector that is right 90% of the time. It is not your EEG. The arm geometry is a placeholder.</p>
     <p>The interpreters and their strictness settings are the ones tuned in the Python simulator (<code>sim/</code>) for the nearest of 45, 55, 65, 75 and 85% accuracy. One decoder window every 0.25 s; you see the arm half a second late when the script plays.</p>
   </footer>
 </div>
 
+<button class="estop float" id="estop-float" aria-label="Emergency stop" hidden>E-STOP</button>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (() => {
@@ -414,12 +464,13 @@ const INTERP_NOTE = {
   shared: 'Works out which target you mean from your left and right commands, then finishes the reach itself.'
 };
 const freshStats = () => ({ trials: 0, hits: 0, times: [], restSteps: 0, restDecisions: 0 });
-S.stats = { arm: freshStats(), cursor: freshStats() };
+S.stats = { arm: freshStats(), cursor: freshStats(), live: freshStats() };
 
-const dims = () => (S.view === 'arm' ? 3 : S.axes);
-const targetsNow = () => (S.view === 'arm' ? ARM_TARGETS : CURSOR_TARGETS[S.axes]);
+const dims = () => (S.view === 'cursor' ? S.axes : 3);
+const targetsNow = () => (S.view === 'cursor' ? CURSOR_TARGETS[S.axes] : ARM_TARGETS);
 
 function newTrial() {
+  if (S.view === 'live') { S.task = liveTask(); S.trail = []; S.banner = null; return; }
   const n = dims(), targets = targetsNow();
   const cfg = Object.assign({}, BASE_CFG, S.view === 'arm' ? {} : { tol: 0.1, tMax: 45 });
   let goalIdx; do { goalIdx = Math.floor(Math.random() * targets.length); } while (goalIdx === S.prevGoal && targets.length > 1);
@@ -432,7 +483,7 @@ function newTrial() {
   while (S.disp.length < 3) S.disp.push(0);
 }
 function resetStats() { S.stats[S.view] = freshStats(); renderStats(); }
-function restart(statsToo = true) { if (statsToo) S.stats[S.view] = freshStats(); newTrial(); syncUI(); }
+function restart(statsToo = true) { if (statsToo) S.stats[S.view] = freshStats(); newTrial(); if (S.view === 'live') liveSettingsPush(); syncUI(); }
 
 function readIntent() {
   if (S.mode !== 'play') return null;
@@ -469,7 +520,7 @@ function tick() {
 function renderBars() {
   const bars = document.querySelectorAll('#bars .bar'), p = S.last.probs, top = argmax(p);
   bars.forEach((el, i) => { el.dataset.on = String(i === top); el.querySelector('.fill').style.width = (p[i] * 100).toFixed(0) + '%'; el.querySelector('.num').textContent = p[i].toFixed(2); });
-  $('rd-intent').textContent = S.last.intent === SWITCH ? 'jaw clench' : CLASS_NAME[S.last.intent];
+  $('rd-intent').textContent = S.last.intent === null ? 'not known' : S.last.intent === SWITCH ? 'jaw clench' : CLASS_NAME[S.last.intent];
   $('rd-move').textContent = S.last.move;
   $('lamp-jaw').dataset.on = String(S.jawFlash > 0);
 }
@@ -481,11 +532,12 @@ function renderStats() {
   $('st-rest').textContent = mins >= 0.2 ? (st.restSteps / mins).toFixed(1) + '/min' : '–';
 }
 function renderHud() {
-  const task = S.task, t = Math.min(task.t * task.cfg.dt, task.cfg.tMax).toFixed(1) + ' s';
+  const task = S.task, live = S.view === 'live';
+  const t = live ? (LIVE.status && LIVE.status.stale ? 'no frames' : LIVE.frames + ' frames') : Math.min(task.t * task.cfg.dt, task.cfg.tMax).toFixed(1) + ' s';
   $('chip-time').textContent = t; $('chip-time2').textContent = t;
   $('chip-joint').textContent = 'joint: ' + JOINT_NAMES[task.j];
   $('chip-axis').textContent = task.n === 1 ? 'axis: horizontal' : 'axis: ' + (task.j === 0 ? 'horizontal' : 'vertical');
-  const b = S.banner, el = $(S.view === 'arm' ? 'banner-arm' : 'banner-cursor');
+  const b = S.banner, el = $(S.view === 'cursor' ? 'banner-cursor' : 'banner-arm');
   $('banner-arm').hidden = $('banner-cursor').hidden = true;
   if (b) { el.hidden = false; el.dataset.kind = b.kind; el.textContent = b.text; }
 }
@@ -499,21 +551,32 @@ function syncUI() {
   for (const [id, key] of [['seg-mode', 'mode'], ['seg-budget', 'budget'], ['seg-calib', 'calib'], ['seg-axes', 'axes'], ['seg-speed', 'speed']])
     $(id).querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(String(S[key]) === b.dataset.v)));
   $('f-axes').hidden = S.view !== 'cursor';
-  $('f-speed').hidden = S.mode !== 'watch';
+  const live = S.view === 'live';
+  $('f-speed').hidden = S.mode !== 'watch' || live;
   $('pad-clench').hidden = dims() === 1;
-  $('clench-label').textContent = S.view === 'arm' ? 'Jaw clench: next joint' : 'Jaw clench: switch axis';
-  $('tab-arm').setAttribute('aria-selected', String(S.view === 'arm')); $('tab-cursor').setAttribute('aria-selected', String(S.view === 'cursor'));
-  $('view-arm').hidden = S.view !== 'arm'; $('view-cursor').hidden = S.view !== 'cursor';
+  $('clench-label').textContent = S.view === 'cursor' ? 'Jaw clench: switch axis' : 'Jaw clench: next joint';
+  $('tab-live').hidden = !LIVE;
+  $('tab-arm').setAttribute('aria-selected', String(S.view === 'arm')); $('tab-cursor').setAttribute('aria-selected', String(S.view === 'cursor')); $('tab-live').setAttribute('aria-selected', String(live));
+  $('view-arm').hidden = S.view === 'cursor'; $('view-cursor').hidden = S.view !== 'cursor';
+  document.querySelectorAll('[data-sim]').forEach((el) => { el.hidden = live; });
+  $('card-train').hidden = $('card-arm').hidden = !live; $('card-stats').hidden = live;
+  $('card-input').hidden = live && !(LIVE && LIVE.engine === 'mock');
+  $('chip-goal').hidden = live; $('chip-conn').hidden = !live; $('estop-float').hidden = !live;
+  $('foot-sim').hidden = live; $('foot-live').hidden = !live;
+  $('sub').textContent = !live ? 'Drive a 3D arm or a cursor through a model of an EEG decoder, and feel what accuracy, confidence and the interpreter do to control.' : (LIVE.engine === 'mock' ? 'Live mode with the simulated decoder: the bridge, interpreter and arm output run exactly as they will with your pipeline.' : 'Live mode: your pipeline\'s decoder output drives the arm through the interpreter.');
+  $('acc-label').textContent = live ? 'Interpreter tuned for accuracy' : 'Decoder accuracy';
+  $('acc-note').textContent = live ? 'Picks the tuned interpreter settings (45, 55, 65, 75 or 85%). Match it to your decoder\'s measured accuracy.' : 'Share of decoder windows that name the right class (rest, left, right).';
   $('input-note').textContent = S.mode === 'play'
     ? 'Nothing held means rest. Hold left or right to imagine that hand; the arm or cursor follows what the decoder makes of it.'
     : 'A scripted user is playing. Press any input to take over.';
-  renderStats(); renderBars(); resize();
+  if (live) $('input-note').textContent = 'The simulated decoder follows what you hold: left hand, right hand, or nothing for rest. Space or J is the jaw clench.';
+  renderStats(); renderBars(); renderLive(); resize();
 }
-function setMode(m) { if (S.mode === m) return; S.mode = m; S.held.left = S.held.right = false; S.clench = 0; if (m === 'play') S.speed = 1; syncUI(); }
+function setMode(m) { if (S.view === 'live' || S.mode === m) return; S.mode = m; S.held.left = S.held.right = false; S.clench = 0; if (m === 'play') S.speed = 1; syncUI(); }
 
 // ======================================================================= input
 function holdPad(el, key) {
-  const set = (v) => { S.held[key] = v; el.dataset.down = String(v); if (v) setMode('play'); };
+  const set = (v) => { S.held[key] = v; el.dataset.down = String(v); if (v) setMode('play'); liveIntent(); };
   el.addEventListener('pointerdown', (e) => { e.preventDefault(); el.setPointerCapture(e.pointerId); set(true); });
   for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) el.addEventListener(ev, () => set(false));
   el.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -521,7 +584,7 @@ function holdPad(el, key) {
 holdPad($('pad-left'), 'left'); holdPad($('pad-right'), 'right');
 (() => {
   const el = $('pad-clench');
-  const press = () => { S.clench++; setMode('play'); el.dataset.down = 'true'; setTimeout(() => { el.dataset.down = 'false'; }, 160); };
+  const press = () => { S.clench++; setMode('play'); liveIntent('clench'); el.dataset.down = 'true'; setTimeout(() => { el.dataset.down = 'false'; }, 160); };
   el.addEventListener('pointerdown', (e) => { e.preventDefault(); press(); });
   el.addEventListener('contextmenu', (e) => e.preventDefault());
 })();
@@ -529,11 +592,12 @@ const KEYS = { ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'righ
 window.addEventListener('keydown', (e) => {
   if (e.target && /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) && e.target.type !== 'range') return;
   const k = KEYS[e.code];
-  if (k) { e.preventDefault(); S.held[k] = true; $('pad-' + k).dataset.down = 'true'; setMode('play'); }
-  else if (['Space', 'KeyJ', 'ArrowDown'].includes(e.code)) { e.preventDefault(); if (!e.repeat) { S.clench++; setMode('play'); $('pad-clench').dataset.down = 'true'; setTimeout(() => { $('pad-clench').dataset.down = 'false'; }, 160); } }
+  if (e.code === 'Escape' && LIVE) { liveSend({ type: 'arm', action: 'estop' }); return; }
+  if (k) { e.preventDefault(); S.held[k] = true; $('pad-' + k).dataset.down = 'true'; setMode('play'); liveIntent(); }
+  else if (['Space', 'KeyJ', 'ArrowDown'].includes(e.code)) { e.preventDefault(); if (!e.repeat) { S.clench++; setMode('play'); liveIntent('clench'); $('pad-clench').dataset.down = 'true'; setTimeout(() => { $('pad-clench').dataset.down = 'false'; }, 160); } }
 });
-window.addEventListener('keyup', (e) => { const k = KEYS[e.code]; if (k) { S.held[k] = false; $('pad-' + k).dataset.down = 'false'; } });
-window.addEventListener('blur', () => { S.held.left = S.held.right = false; $('pad-left').dataset.down = $('pad-right').dataset.down = 'false'; });
+window.addEventListener('keyup', (e) => { const k = KEYS[e.code]; if (k) { S.held[k] = false; $('pad-' + k).dataset.down = 'false'; liveIntent(); } });
+window.addEventListener('blur', () => { S.held.left = S.held.right = false; $('pad-left').dataset.down = $('pad-right').dataset.down = 'false'; liveIntent(); });
 
 function bindSeg(id, key, parse) {
   $(id).addEventListener('click', (e) => {
@@ -555,6 +619,101 @@ $('btn-reset').addEventListener('click', () => restart());
 function setView(v) { if (S.view === v) return; S.view = v; S.held.left = S.held.right = false; restart(false); renderStats(); }
 $('tab-arm').addEventListener('click', () => setView('arm'));
 $('tab-cursor').addEventListener('click', () => setView('cursor'));
+$('tab-live').addEventListener('click', () => setView('live'));
+
+
+// ======================================================================= live bridge (only when served by live/run_live.py)
+const LIVE = window.BCI_LIVE ? { cfg: window.BCI_LIVE, ws: null, ok: false, engine: null, status: null, cue: null, cueUntil: 0, log: [], model: null, frames: 0, confirmUntil: 0, arm: null } : null;
+function liveTask() { return { q: [0, 0, 0], j: 0, n: 3, goal: null, goalIdx: -1, targets: ARM_TARGETS, inTol: 0, autoTarget: null, t: 0, cfg: Object.assign({}, BASE_CFG) }; }
+function liveSend(msg) { if (LIVE && LIVE.ws && LIVE.ws.readyState === 1) LIVE.ws.send(JSON.stringify(msg)); }
+function liveSettingsPush() { liveSend({ type: 'settings', interp: S.interp, budget: S.budget, profile: S.acc }); }
+function liveIntent(kind) {
+  if (!LIVE || S.view !== 'live' || LIVE.engine !== 'mock') return;
+  if (kind === 'clench') return liveSend({ type: 'intent', value: SWITCH });
+  liveSend({ type: 'intent', value: S.held.left && !S.held.right ? LEFT : S.held.right && !S.held.left ? RIGHT : REST });
+}
+function liveLog(line) {
+  LIVE.log.push(line); if (LIVE.log.length > 200) LIVE.log.shift();
+  const el = $('log'); el.textContent = LIVE.log.slice(-80).join('\n'); el.scrollTop = el.scrollHeight;
+}
+function liveConnect() {
+  const ws = new WebSocket(LIVE.cfg.ws); LIVE.ws = ws;
+  ws.onopen = () => liveSend({ type: 'hello', token: LIVE.cfg.token });
+  ws.onmessage = (e) => { let m; try { m = JSON.parse(e.data); } catch (_) { return; } liveHandle(m); };
+  ws.onclose = () => { LIVE.ok = false; renderLive(); setTimeout(liveConnect, 1500); };
+  ws.onerror = () => {};
+}
+function liveHandle(m) {
+  switch (m.type) {
+    case 'hello_ok': LIVE.ok = true; LIVE.engine = m.engine; liveLog('connected to the bridge (engine: ' + m.engine + ')'); syncUI(); break;
+    case 'status': {
+      const first = !LIVE.status; LIVE.status = m;
+      if (first && m.settings) { S.interp = m.settings.interp; S.budget = m.settings.budget; S.acc = m.settings.profile; $('interp').value = S.interp; $('acc').value = S.acc; }
+      if (m.notice) liveLog('notice: ' + m.notice);
+      syncUI(); break;
+    }
+    case 'state': {
+      const t = S.task; if (S.view !== 'live') break;
+      t.q = m.q.slice(); t.j = m.j; t.autoTarget = m.auto; t.t++;
+      S.last = { probs: m.probs, jaw: m.jaw, intent: m.intent === undefined ? null : m.intent, move: m.move };
+      if (m.jaw) S.jawFlash = 3;
+      S.trail.push(t.q.slice()); if (S.trail.length > 40) S.trail.shift();
+      LIVE.frames++; LIVE.arm = m.arm; break;
+    }
+    case 'cue':
+      if (m.phase === 'start') { LIVE.cue = m; LIVE.cueUntil = performance.now() + (m.dur || 4) * 1000; } else LIVE.cue = null;
+      break;
+    case 'trained': LIVE.model = m; liveLog('model trained' + (m.cv_acc != null ? ', cross-validated accuracy ' + Math.round(m.cv_acc * 100) + '%' : '')); break;
+    case 'log': liveLog('[' + m.name + '] ' + m.line); break;
+    case 'script_exit': liveLog('[' + m.name + '] exited with code ' + m.code); break;
+    case 'error': liveLog('error: ' + m.message); break;
+  }
+}
+function renderLive() {
+  if (!LIVE || S.view !== 'live') return;
+  const st = LIVE.status, arm = st && st.arm, now = performance.now();
+  $('chip-conn').textContent = !LIVE.ok ? 'bridge: reconnecting' : 'bridge: ' + LIVE.engine + (st && st.stale ? ' · no frames' : '');
+  const cue = LIVE.cue && now < LIVE.cueUntil ? LIVE.cue : null;
+  $('cue').hidden = !cue;
+  if (cue) {
+    $('cue-main').textContent = (cue.class === 'left' ? '◀ LEFT HAND' : cue.class === 'right' ? 'RIGHT HAND ▶' : cue.class.toUpperCase());
+    $('cue-sub').textContent = 'trial ' + cue.trial + ' of ' + cue.n + ' · ' + Math.max(0, (LIVE.cueUntil - now) / 1000).toFixed(1) + ' s';
+  }
+  const running = st ? st.scripts : [];
+  const labels = { record: ['Record training session', 'Stop recording'], train: ['Train model', 'Stop training'], live: ['Start live decode', 'Stop live decode'] };
+  document.querySelectorAll('[data-script]').forEach((b) => {
+    const n = b.dataset.script, on = running.includes(n); b.textContent = labels[n][on ? 1 : 0]; b.classList.toggle('on', on);
+    b.hidden = !!st && !st.scripts_defined.includes(n); b.disabled = !LIVE.ok;
+  });
+  if (arm) {
+    const a = LIVE.arm || {};
+    $('arm-state').textContent = arm.estopped ? 'E-STOP latched' : arm.enabled ? 'ARMED, sending' : 'dry run, not sending';
+    $('arm-state').className = arm.estopped ? 'bad' : '';
+    $('arm-sent').textContent = (arm.sent || [0, 0, 0]).join(' ');
+    $('arm-pend').textContent = (a.pending || [0, 0, 0]).join(' ');
+    $('arm-blockers').innerHTML = '';
+    (arm.blockers || []).forEach((b) => { const li = document.createElement('li'); li.textContent = b; $('arm-blockers').appendChild(li); });
+    const confirming = now < LIVE.confirmUntil && !arm.enabled && !arm.estopped;
+    $('btn-arm-enable').hidden = arm.enabled || confirming; $('btn-arm-confirm').hidden = !confirming;
+    $('btn-arm-enable').disabled = !LIVE.ok || arm.estopped || (arm.blockers || []).length > 0;
+    $('btn-arm-disable').hidden = !arm.enabled; $('btn-arm-reset').hidden = !arm.estopped;
+    $('arm-note').textContent = arm.protocol_verified ? $('arm-note').textContent : 'Serial protocol is not verified against your firmware. Check it with Jog at low steps before enabling real motion. Steppers are open loop: home the arm by hand, then Set zero here.';
+  }
+}
+if (LIVE) {
+  for (const id of ['btn-estop', 'estop-float']) $(id).addEventListener('click', () => liveSend({ type: 'arm', action: 'estop' }));
+  $('btn-arm-enable').addEventListener('click', () => { LIVE.confirmUntil = performance.now() + 6000; renderLive(); });
+  $('btn-arm-confirm').addEventListener('click', () => { LIVE.confirmUntil = 0; liveSend({ type: 'arm', action: 'enable' }); });
+  $('btn-arm-disable').addEventListener('click', () => liveSend({ type: 'arm', action: 'disable' }));
+  $('btn-arm-reset').addEventListener('click', () => liveSend({ type: 'arm', action: 'reset_estop' }));
+  $('btn-zero').addEventListener('click', () => liveSend({ type: 'arm', action: 'zero' }));
+  $('btn-jog-minus').addEventListener('click', () => liveSend({ type: 'arm', action: 'jog', joint: Number($('jog-joint').value), steps: -5 }));
+  $('btn-jog-plus').addEventListener('click', () => liveSend({ type: 'arm', action: 'jog', joint: Number($('jog-joint').value), steps: 5 }));
+  document.querySelectorAll('[data-script]').forEach((b) => b.addEventListener('click', () => {
+    const running = LIVE.status && LIVE.status.scripts.includes(b.dataset.script);
+    liveSend({ type: 'script', name: b.dataset.script, action: running ? 'stop' : 'start' });
+  }));
+}
 
 // ======================================================================= theme
 const cssVar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -645,11 +804,14 @@ function render3D(now) {
   const jp = task.j === 0 ? [0, BASE_H + 0.07, 0] : task.j === 1 ? (() => { const r = new THREE.Vector3(); gl.sJoint.getWorldPosition(r); return r.toArray(); })() : (() => { const r = new THREE.Vector3(); gl.eJoint.getWorldPosition(r); return r.toArray(); })();
   gl.ring.position.fromArray(jp);
   gl.ring.rotation.set(task.j === 0 ? Math.PI / 2 : 0, task.j === 0 ? 0 : a.yaw + Math.PI / 2, 0);
-  const goalPos = armTip(task.goal);
-  gl.goalMesh.position.fromArray(goalPos); gl.goalRing.position.fromArray(goalPos);
-  gl.goalRing.lookAt(camera.position);
-  const pulse = 1 + 0.12 * Math.sin(now / 260); gl.goalRing.scale.setScalar(pulse);
-  gl.goalMesh.material.opacity = task.inTol > 0 ? 1 : 0.85;
+  gl.goalMesh.visible = gl.goalRing.visible = !!task.goal;
+  if (task.goal) {
+    const goalPos = armTip(task.goal);
+    gl.goalMesh.position.fromArray(goalPos); gl.goalRing.position.fromArray(goalPos);
+    gl.goalRing.lookAt(camera.position);
+    const pulse = 1 + 0.12 * Math.sin(now / 260); gl.goalRing.scale.setScalar(pulse);
+    gl.goalMesh.material.opacity = task.inTol > 0 ? 1 : 0.85;
+  }
   // trail
   const pos = gl.trailGeo.attributes.position, tr = S.trail.length ? S.trail : [task.q];
   for (let i = 0; i < 41; i++) { const p = armTip(tr[Math.min(i, tr.length - 1)]); pos.setXYZ(i, p[0], p[1], p[2]); }
@@ -703,16 +865,18 @@ function resize() {
   if (gl) { const v = $('view-arm'), w = v.clientWidth, h = v.clientHeight; if (w && h) { gl.renderer.setSize(w, h, false); gl.camera.aspect = w / h; gl.camera.updateProjectionMatrix(); } }
 }
 if (window.ResizeObserver) new ResizeObserver(resize).observe(document.body); else window.addEventListener('resize', resize);
-let lastTs = 0, acc = 0;
+let lastTs = 0, acc = 0, liveClock = 0;
 function frame(ts) {
   const dt = Math.min(0.25, (ts - (lastTs || ts)) / 1000); lastTs = ts;
   const speed = S.mode === 'watch' ? S.speed : 1;
   acc += dt * speed;
-  while (acc >= BASE_CFG.dt) { tick(); acc -= BASE_CFG.dt; if (S.jawFlash > 0) S.jawFlash--; }
+  if (S.view === 'live') { acc = 0; liveClock += dt; while (liveClock >= BASE_CFG.dt) { liveClock -= BASE_CFG.dt; if (S.jawFlash > 0) S.jawFlash--; } }
+  else while (acc >= BASE_CFG.dt) { tick(); acc -= BASE_CFG.dt; if (S.jawFlash > 0) S.jawFlash--; }
   const k = 1 - Math.exp(-dt / 0.1), q = S.task.q;
   for (let i = 0; i < 3; i++) S.disp[i] += ((q[i] === undefined ? 0 : q[i]) - S.disp[i]) * k;
   renderBars(); renderHud();
-  if (S.view === 'arm') render3D(ts); else drawCursor();
+  if (S.view === 'cursor') drawCursor(); else render3D(ts);
+  if (S.view === 'live') renderLive();
   requestAnimationFrame(frame);
 }
 const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
@@ -720,6 +884,7 @@ if (mq && mq.addEventListener) mq.addEventListener('change', readTheme);
 new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 if (!CanvasRenderingContext2D.prototype.roundRect) CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h) { this.rect(x, y, w, h); };
 
+if (LIVE) { S.view = 'live'; S.mode = 'play'; liveConnect(); setInterval(() => liveSend({ type: 'ping' }), 1000); }
 readTheme(); init3D(); readTheme(); newTrial(); syncUI(); requestAnimationFrame(frame);
 window.BCISim.state = S;
 })();
